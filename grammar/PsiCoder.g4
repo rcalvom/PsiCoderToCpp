@@ -2,34 +2,38 @@ grammar PsiCoder;
 
 s : (funcion | estructura)* principal (funcion | estructura)* EOF ;
 
-funcion :  'funcion' tipo ID '(' param_funcion ')' 'hacer' (sentencia)+ 'fin_funcion' ;
+funcion :  'funcion' tipo ID '(' param_funcion ')' 'hacer' (sentencia)* 'fin_funcion' ;
 
 param_funcion :  (tipo ID (',' tipo ID)* )?;
 
-estructura : 'estructura' ID (atributos)* 'fin_estructura' ;
+estructura : 'estructura' ID (atributo)* 'fin_estructura' ;
 
-atributos : tipo dec_variable ';' ;
+atributo : tipo dec_variable ';' ;
 
 principal : 'funcion_principal' (sentencia)+ 'fin_principal' ;
 
 sentencia
     : 'si' '(' expresion ')' 'entonces' (sentencia)* ('si_no' (sentencia)*)? 'fin_si'
-    | 'seleccionar' '(' expresion ')' 'entre' casos 'fin_seleccionar'
-    //|'para' '('
+    | 'seleccionar' '(' expresion ')' 'entre' (caso)+ 'fin_seleccionar'
+    | 'para' '(' tipo? id '=' expresion ';' expresion ';' expresion')' 'hacer' (sentencia)* 'fin_para'
     | 'hacer' (sentencia)* 'mientras' '(' expresion ')' ';'
     | 'mientras' '(' expresion ')' 'hacer' (sentencia)* 'fin_mientras'
-    | 'leer' '(' ID ')' ';'
-    | 'imprimir' '(' (ID | expresion) (',' (ID | expresion))* ')' ';'
+    | 'leer' '(' id ')' ';'
+    | imprimir
     | 'retorno' expresion ';'
+    | tipo id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
+    | id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
     | 'romper' ';'
+    | idcall ';'
     ;
 
-casos
-    : 'caso' ENTERO ':' sentencia 'romper' ';' casos
-    | 'defecto' ':' sentencia
-    ;
+imprimir : 'imprimir' '(' (id | expresion) (',' (id | expresion))* ')' ';' ;
 
-tipo: ID
+caso
+    : 'caso' expresion ':' (sentencia)*
+    | 'defecto' ':' (sentencia)* ;
+
+tipo: ID(.ID)*
     | 'entero'
     | 'booleano'
     | 'caracter'
@@ -79,52 +83,26 @@ numero_palabra
 
 idcall : ID (idestructura | call)? ;
 
-call : '(' param_funcion ')' ;
+call : '(' (ID(.ID)* (',' ID(.ID)*)*)? ')' ;
 
 idestructura: '.' ID ('.' idestructura)* ;
 
-ESP : [ \t\r\n]+ -> skip;
+id : ID(.ID)*;
 
-ID : [a-zA-Z]+[a-zA-Z0-9_]*;
+ESPACIADO : [ \t\r\n]+ -> skip;
 
-ENTERO: [1-9][0-9]* ;
+COMENTARIO_LINEA : '//' ~ [\r\n]* -> skip;
+
+COMENTARIO_BLOQUE : '/*' .*? '*/' -> skip;
+
+ID : [a-zA-Z][a-zA-Z0-9_]*;
+
+ENTERO: [1-9][0-9]* | '0';
 
 REAL: [0-9]+.[0-9]+ ;
 
 CARACTER: '\'' [a-zA-Z0-9_] '\'' ;
 
-CADENA: '"' [a-zA-Z0-9_ ]+ '"' ;
-
-/*EXPRESION -> VALOR OPERADOR
-OPERADOR -> tk_y EXPRESION
-OPERADOR -> tk_o EXPRESION
-OPERADOR -> tk_igual EXPRESION
-OPERADOR -> tk_dif EXPRESION
-OPERADOR -> tk_menor EXPRESION
-OPERADOR -> tk_mayor EXPRESION
-OPERADOR -> tk_menor_igual EXPRESION
-OPERADOR -> tk_mayor_igual EXPRESION
-OPERADOR -> tk_mas EXPRESION
-OPERADOR -> tk_menos EXPRESION
-OPERADOR -> tk_mult EXPRESION
-OPERADOR -> tk_mod EXPRESION
-OPERADOR -> tk_div EXPRESION
-OPERADOR -> epsilon
-VALOR -> tk_par_izq EXPRESION tk_par_der
-VALOR -> IDCALL
-VALOR -> NUMERO_PALABRA
-VALOR -> BOOLEANO
-VALOR -> tk_menos VALOR
-VALOR -> tk_neg VALOR
-NUMERO_PALABRA -> tk_entero
-NUMERO_PALABRA -> tk_real
-NUMERO_PALABRA -> tk_caracter
-NUMERO_PALABRA -> tk_cadena
-BOOLEANO -> verdadero
-BOOLEANO -> falso
-IDCALL -> id IDCALL2
-IDCALL2 -> IDESTRUC
-IDCALL2 -> CALL
-IDCALL2 -> epsilon*/
+CADENA: '"' [a-zA-Z0-9_ ]* '"' ;
 
 
