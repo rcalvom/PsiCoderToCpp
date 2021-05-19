@@ -1,7 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-public class PsiCoderToCpp extends PsiCoderBaseListener {
+public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
 
     private final BufferedWriter writer;
     private int tabs;
@@ -10,96 +10,65 @@ public class PsiCoderToCpp extends PsiCoderBaseListener {
         super();
         this.writer = writer;
         this.tabs = 0;
-        try {
-            this.writer.write("#include <iostream>\n" +
-                    "#include <string>\n\n" +
-                    "using namespace std;\n" +
-                    "\n");
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
-            System.exit(-1);
-        }
+        this.write("#include <iostream>\n" +
+                "#include <string>\n\n" +
+                "using namespace std;\n" +
+                "\n");
     }
 
     @Override
-    public void enterPrincipal(PsiCoderParser.PrincipalContext ctx) {
-        try {
-            this.writer.write("int main(){\n");
-            this.tabs++;
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
-            System.exit(-1);
-        }
+    public T visitS(PsiCoderParser.SContext ctx) {
+        return super.visitS(ctx);
     }
 
     @Override
-    public void exitPrincipal(PsiCoderParser.PrincipalContext ctx) {
+    public T visitPrincipal(PsiCoderParser.PrincipalContext ctx) {
+        this.write("int main(){\n");
+        this.tabs++;
+        for(int i = 0; i < ctx.sentencia().size(); i++){
+            visitSentencia(ctx.sentencia(i));
+        }
+        this.write("\t".repeat(this.tabs));
+        this.write("return 0;\n");
+        this.tabs--;
+        this.write("\t".repeat(this.tabs));
+        this.write("}\n");
+        return null;
+    }
+
+    @Override
+    public T visitSentencia(PsiCoderParser.SentenciaContext ctx) {
+        visitImprimir(ctx.imprimir());
+        return null;
+    }
+
+    @Override
+    public T visitImprimir(PsiCoderParser.ImprimirContext ctx) {
+        this.write("\t".repeat(this.tabs));
+        this.write("cout ");
+        for(int i = 0; i < ctx.expresion().size(); i++){
+            this.write(" << ");
+            visitExpresion(ctx.expresion(i));
+        }
+        this.write(";\n");
+        return null;
+    }
+
+    @Override
+    public T visitExpresion(PsiCoderParser.ExpresionContext ctx) {
+        this.write(ctx.getText());
+        return null;
+    }
+
+    private void write(String s){
         try{
-            this.writer.write("\t".repeat(this.tabs));
-            this.writer.write("return 0;\n");
-            this.tabs--;
-            this.writer.write("\t".repeat(this.tabs));
-            this.writer.write("}\n\n");
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
-            System.exit(-1);
-        }
-
-    }
-
-    @Override
-    public void enterImprimir(PsiCoderParser.ImprimirContext ctx) {
-        try{
-            this.writer.write("\t".repeat(this.tabs));
-            this.writer.write("cout ");
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
+            this.writer.write(s);
+        }catch (IOException e){
+            System.err.println("Ha ocurrido un error escribiendo el archivo de salida.");
             System.exit(-1);
         }
     }
 
-
-    @Override
-    public void exitImprimir(PsiCoderParser.ImprimirContext ctx) {
-        try{
-            this.writer.write(";\n");
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
-            System.exit(-1);
-        }
-    }
-
-    @Override
-    public void enterParam_imprimir(PsiCoderParser.Param_imprimirContext ctx) {
-        try{
-            this.writer.write("<< ");
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
-            System.exit(-1);
-        }
-    }
-    @Override
-    public void exitParam_imprimir(PsiCoderParser.Param_imprimirContext ctx) {
-        try{
-            this.writer.write(" ");
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
-            System.exit(-1);
-        }
-    }
-
-    @Override
-    public void enterId(PsiCoderParser.IdContext ctx) {
-        try{
-            this.writer.write(ctx.ID(0).getText());
-            for(int i = 1; i < ctx.ID().size(); i++){
-                this.writer.write("." + ctx.ID(i).getText());
-            }
-        }catch(IOException e){
-            System.out.println("Ha ocurrido un error escribiendo el archivo de salida.");
-            System.exit(-1);
-        }
-    }
 
 
 

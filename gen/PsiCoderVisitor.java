@@ -58,12 +58,6 @@ public interface PsiCoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitImprimir(PsiCoderParser.ImprimirContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#param_imprimir}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParam_imprimir(PsiCoderParser.Param_imprimirContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#caso}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

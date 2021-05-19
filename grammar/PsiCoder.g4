@@ -27,12 +27,7 @@ sentencia
     | idcall ';'
     ;
 
-imprimir : 'imprimir' '(' param_imprimir (',' param_imprimir)* ')' ';' ;
-
-param_imprimir
-    : id
-    | expresion
-    ;
+imprimir : 'imprimir' '(' expresion (',' expresion)* ')' ';' ;
 
 caso
     : 'caso' expresion ':' (sentencia)*
@@ -106,7 +101,7 @@ ENTERO: [1-9][0-9]* | '0';
 
 REAL: [0-9]+.[0-9]+ ;
 
-CARACTER: '\'' [a-zA-Z0-9_] '\'' ;
+CARACTER: '\'' [a-zA-Z0-9_] '\'' | '\'\\n\'' ;
 
 CADENA: '"' [a-zA-Z0-9_ ]* '"' ;
 

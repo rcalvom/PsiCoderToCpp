@@ -87,16 +87,6 @@ public interface PsiCoderListener extends ParseTreeListener {
 	 */
 	void exitImprimir(PsiCoderParser.ImprimirContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#param_imprimir}.
-	 * @param ctx the parse tree
-	 */
-	void enterParam_imprimir(PsiCoderParser.Param_imprimirContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#param_imprimir}.
-	 * @param ctx the parse tree
-	 */
-	void exitParam_imprimir(PsiCoderParser.Param_imprimirContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link PsiCoderParser#caso}.
 	 * @param ctx the parse tree
 	 */
