@@ -111,6 +111,18 @@ public class PsiCoderBaseListener implements PsiCoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterParam_imprimir(PsiCoderParser.Param_imprimirContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParam_imprimir(PsiCoderParser.Param_imprimirContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCaso(PsiCoderParser.CasoContext ctx) { }
 	/**
 	 * {@inheritDoc}

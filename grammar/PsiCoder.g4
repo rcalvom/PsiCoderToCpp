@@ -27,7 +27,12 @@ sentencia
     | idcall ';'
     ;
 
-imprimir : 'imprimir' '(' (id | expresion) (',' (id | expresion))* ')' ';' ;
+imprimir : 'imprimir' '(' param_imprimir (',' param_imprimir)* ')' ';' ;
+
+param_imprimir
+    : id
+    | expresion
+    ;
 
 caso
     : 'caso' expresion ':' (sentencia)*
@@ -87,7 +92,7 @@ call : '(' (ID(.ID)* (',' ID(.ID)*)*)? ')' ;
 
 idestructura: '.' ID ('.' idestructura)* ;
 
-id : ID(.ID)*;
+id : ID('.' ID)*;
 
 ESPACIADO : [ \t\r\n]+ -> skip;
 

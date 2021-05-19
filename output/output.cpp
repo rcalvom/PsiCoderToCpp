@@ -1,10 +1,10 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
 int main(){
-	cout << ;
+	cout << a.a << a ;
 	return 0;
 }
 
