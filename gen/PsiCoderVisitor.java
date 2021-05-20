@@ -28,18 +28,6 @@ public interface PsiCoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParam_funcion(PsiCoderParser.Param_funcionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#estructura}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEstructura(PsiCoderParser.EstructuraContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#atributo}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAtributo(PsiCoderParser.AtributoContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#principal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -70,53 +58,29 @@ public interface PsiCoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTipo(PsiCoderParser.TipoContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#dec_variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDec_variable(PsiCoderParser.Dec_variableContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#asignacion}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAsignacion(PsiCoderParser.AsignacionContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#expresion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpresion(PsiCoderParser.ExpresionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#operador}.
+	 * Visit a parse tree produced by {@link PsiCoderParser#llamado_funcion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOperador(PsiCoderParser.OperadorContext ctx);
+	T visitLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#valor}.
+	 * Visit a parse tree produced by {@link PsiCoderParser#operador_binario}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitValor(PsiCoderParser.ValorContext ctx);
+	T visitOperador_binario(PsiCoderParser.Operador_binarioContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#numero_palabra}.
+	 * Visit a parse tree produced by {@link PsiCoderParser#operador_unitario}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumero_palabra(PsiCoderParser.Numero_palabraContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#idcall}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdcall(PsiCoderParser.IdcallContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#call}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCall(PsiCoderParser.CallContext ctx);
+	T visitOperador_unitario(PsiCoderParser.Operador_unitarioContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#idestructura}.
 	 * @param ctx the parse tree

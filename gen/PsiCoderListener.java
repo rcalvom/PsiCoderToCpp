@@ -37,26 +37,6 @@ public interface PsiCoderListener extends ParseTreeListener {
 	 */
 	void exitParam_funcion(PsiCoderParser.Param_funcionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#estructura}.
-	 * @param ctx the parse tree
-	 */
-	void enterEstructura(PsiCoderParser.EstructuraContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#estructura}.
-	 * @param ctx the parse tree
-	 */
-	void exitEstructura(PsiCoderParser.EstructuraContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#atributo}.
-	 * @param ctx the parse tree
-	 */
-	void enterAtributo(PsiCoderParser.AtributoContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#atributo}.
-	 * @param ctx the parse tree
-	 */
-	void exitAtributo(PsiCoderParser.AtributoContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link PsiCoderParser#principal}.
 	 * @param ctx the parse tree
 	 */
@@ -107,26 +87,6 @@ public interface PsiCoderListener extends ParseTreeListener {
 	 */
 	void exitTipo(PsiCoderParser.TipoContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#dec_variable}.
-	 * @param ctx the parse tree
-	 */
-	void enterDec_variable(PsiCoderParser.Dec_variableContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#dec_variable}.
-	 * @param ctx the parse tree
-	 */
-	void exitDec_variable(PsiCoderParser.Dec_variableContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#asignacion}.
-	 * @param ctx the parse tree
-	 */
-	void enterAsignacion(PsiCoderParser.AsignacionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#asignacion}.
-	 * @param ctx the parse tree
-	 */
-	void exitAsignacion(PsiCoderParser.AsignacionContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link PsiCoderParser#expresion}.
 	 * @param ctx the parse tree
 	 */
@@ -137,55 +97,35 @@ public interface PsiCoderListener extends ParseTreeListener {
 	 */
 	void exitExpresion(PsiCoderParser.ExpresionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#operador}.
+	 * Enter a parse tree produced by {@link PsiCoderParser#llamado_funcion}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperador(PsiCoderParser.OperadorContext ctx);
+	void enterLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#operador}.
+	 * Exit a parse tree produced by {@link PsiCoderParser#llamado_funcion}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperador(PsiCoderParser.OperadorContext ctx);
+	void exitLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#valor}.
+	 * Enter a parse tree produced by {@link PsiCoderParser#operador_binario}.
 	 * @param ctx the parse tree
 	 */
-	void enterValor(PsiCoderParser.ValorContext ctx);
+	void enterOperador_binario(PsiCoderParser.Operador_binarioContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#valor}.
+	 * Exit a parse tree produced by {@link PsiCoderParser#operador_binario}.
 	 * @param ctx the parse tree
 	 */
-	void exitValor(PsiCoderParser.ValorContext ctx);
+	void exitOperador_binario(PsiCoderParser.Operador_binarioContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#numero_palabra}.
+	 * Enter a parse tree produced by {@link PsiCoderParser#operador_unitario}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumero_palabra(PsiCoderParser.Numero_palabraContext ctx);
+	void enterOperador_unitario(PsiCoderParser.Operador_unitarioContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#numero_palabra}.
+	 * Exit a parse tree produced by {@link PsiCoderParser#operador_unitario}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumero_palabra(PsiCoderParser.Numero_palabraContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#idcall}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdcall(PsiCoderParser.IdcallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#idcall}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdcall(PsiCoderParser.IdcallContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PsiCoderParser#call}.
-	 * @param ctx the parse tree
-	 */
-	void enterCall(PsiCoderParser.CallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PsiCoderParser#call}.
-	 * @param ctx the parse tree
-	 */
-	void exitCall(PsiCoderParser.CallContext ctx);
+	void exitOperador_unitario(PsiCoderParser.Operador_unitarioContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PsiCoderParser#idestructura}.
 	 * @param ctx the parse tree

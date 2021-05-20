@@ -28,6 +28,7 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         for(int i = 0; i < ctx.sentencia().size(); i++){
             visitSentencia(ctx.sentencia(i));
         }
+        this.write("\n");
         this.write("\t".repeat(this.tabs));
         this.write("return 0;\n");
         this.tabs--;
@@ -45,7 +46,7 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
     @Override
     public T visitImprimir(PsiCoderParser.ImprimirContext ctx) {
         this.write("\t".repeat(this.tabs));
-        this.write("cout ");
+        this.write("cout");
         for(int i = 0; i < ctx.expresion().size(); i++){
             this.write(" << ");
             visitExpresion(ctx.expresion(i));
@@ -56,7 +57,37 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
 
     @Override
     public T visitExpresion(PsiCoderParser.ExpresionContext ctx) {
-        this.write(ctx.getText());
+        if(ctx.ENTERO() != null){
+            this.write(ctx.ENTERO().getText());
+        }else if(ctx.REAL() != null){
+            String s = ctx.REAL().getText();
+            this.write(ctx.REAL().getText());
+        }else if(ctx.BOOLEANO() != null){
+            if(ctx.BOOLEANO().getText().equals("verdadero")){
+                this.write("true");
+            }else if(ctx.BOOLEANO().getText().equals("falso")){
+                this.write("false");
+            }
+        }else if(ctx.CADENA() != null){
+            this.write(ctx.CADENA().getText());
+        }else if(ctx.CARACTER() != null){
+            this.write(ctx.CARACTER().getText());
+        }else if(ctx.id() != null){
+            this.write(ctx.id().getText());
+        }else if(ctx.llamado_funcion() != null){
+            visitLlamado_funcion(ctx.llamado_funcion());
+        }else if(ctx.getText().charAt(0) == '('){
+            this.write("(");
+            visitExpresion(ctx.expresion(0));
+            this.write(")");
+        }else if(ctx.operador_binario() != null){
+            visitExpresion(ctx.expresion(0));
+            this.write(" " + ctx.operador_binario().getText() + " ");
+            visitExpresion(ctx.expresion(1));
+        }else if(ctx.operador_unitario() != null){
+            this.write(ctx.operador_unitario().getText());
+            visitExpresion(ctx.expresion(0));
+        }
         return null;
     }
 

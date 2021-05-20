@@ -51,30 +51,6 @@ public class PsiCoderBaseListener implements PsiCoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEstructura(PsiCoderParser.EstructuraContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEstructura(PsiCoderParser.EstructuraContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAtributo(PsiCoderParser.AtributoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAtributo(PsiCoderParser.AtributoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterPrincipal(PsiCoderParser.PrincipalContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -135,30 +111,6 @@ public class PsiCoderBaseListener implements PsiCoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDec_variable(PsiCoderParser.Dec_variableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDec_variable(PsiCoderParser.Dec_variableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAsignacion(PsiCoderParser.AsignacionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAsignacion(PsiCoderParser.AsignacionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExpresion(PsiCoderParser.ExpresionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -171,61 +123,37 @@ public class PsiCoderBaseListener implements PsiCoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperador(PsiCoderParser.OperadorContext ctx) { }
+	@Override public void enterLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperador(PsiCoderParser.OperadorContext ctx) { }
+	@Override public void exitLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterValor(PsiCoderParser.ValorContext ctx) { }
+	@Override public void enterOperador_binario(PsiCoderParser.Operador_binarioContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitValor(PsiCoderParser.ValorContext ctx) { }
+	@Override public void exitOperador_binario(PsiCoderParser.Operador_binarioContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumero_palabra(PsiCoderParser.Numero_palabraContext ctx) { }
+	@Override public void enterOperador_unitario(PsiCoderParser.Operador_unitarioContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumero_palabra(PsiCoderParser.Numero_palabraContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIdcall(PsiCoderParser.IdcallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIdcall(PsiCoderParser.IdcallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCall(PsiCoderParser.CallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCall(PsiCoderParser.CallContext ctx) { }
+	@Override public void exitOperador_unitario(PsiCoderParser.Operador_unitarioContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

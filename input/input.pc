@@ -1,3 +1,22 @@
 funcion_principal
-    imprimir("Hello world", a+b+5+(7-8)*9%6&&verdadero);
+    imprimir(1);
+    imprimir(1.0);
+    imprimir(1, 1.0);
+    imprimir(verdadero);
+    imprimir(falso);
+    imprimir(verdadero, falso);
+    imprimir("Hola Mundo");
+    imprimir('A');
+    imprimir("Hola Mundo", 'A');
+    imprimir(a);
+    imprimir(a, b);
+    imprimir((verdadero));
+    imprimir((falso), (verdadero), (a+b), (1%2));
+    imprimir(1+2-3*4/5%6);
+    imprimir(verdadero&&falso);
+    imprimir(verdadero||falso);
+    imprimir(verdadero!=falso);
+    imprimir(!flag);
+    imprimir(-1);
+    imprimir(2 > 3);
 fin_principal

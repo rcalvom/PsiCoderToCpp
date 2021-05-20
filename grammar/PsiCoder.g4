@@ -1,14 +1,15 @@
 grammar PsiCoder;
 
-s : (funcion | estructura)* principal (funcion | estructura)* EOF ;
+//s : (funcion | estructura)* principal (funcion | estructura)* EOF ;
+s : (funcion)* principal (funcion)* EOF ;
 
 funcion :  'funcion' tipo ID '(' param_funcion ')' 'hacer' (sentencia)* 'fin_funcion' ;
 
 param_funcion :  (tipo ID (',' tipo ID)* )?;
 
-estructura : 'estructura' ID (atributo)* 'fin_estructura' ;
+//estructura : 'estructura' ID (atributo)* 'fin_estructura' ;
 
-atributo : tipo dec_variable ';' ;
+//atributo : tipo dec_variable ';' ;
 
 principal : 'funcion_principal' (sentencia)+ 'fin_principal' ;
 
@@ -24,7 +25,7 @@ sentencia
     | tipo id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
     | id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
     | 'romper' ';'
-    | idcall ';'
+    // idcall ';' LLamado a función.
     ;
 
 imprimir : 'imprimir' '(' expresion (',' expresion)* ')' ';' ;
@@ -33,7 +34,8 @@ caso
     : 'caso' expresion ':' (sentencia)*
     | 'defecto' ':' (sentencia)* ;
 
-tipo: ID(.ID)*
+tipo
+    : id
     | 'entero'
     | 'booleano'
     | 'caracter'
@@ -41,9 +43,47 @@ tipo: ID(.ID)*
     | 'cadena'
     ;
 
-dec_variable: ID (asignacion)* (',' dec_variable)* ;
+expresion
+    : ENTERO
+    | REAL
+    | BOOLEANO
+    | CADENA
+    | CARACTER
+    | id
+    | llamado_funcion
+    | '(' expresion ')'
+    | expresion operador_binario expresion
+    | operador_unitario expresion
+    ;
+
+llamado_funcion : id '(' (expresion (',' expresion)*)? ')' ;
+
+operador_binario
+    : '&&'
+    | '||'
+    | '=='
+    | '!='
+    | '<'
+    | '>'
+    | '<='
+    | '>='
+    | '+'
+    | '-'
+    | '*'
+    | '%'
+    | '/'
+    ;
+
+operador_unitario
+    : '-'
+    | '!'
+    ;
+
+/*dec_variable: ID (asignacion)* (',' dec_variable)* ;
 
 asignacion: '=' expresion ;
+
+
 
 expresion: valor (operador)* (expresion)* ;
 
@@ -83,7 +123,7 @@ numero_palabra
 
 idcall : ID (idestructura | call)? ;
 
-call : '(' (ID(.ID)* (',' ID(.ID)*)*)? ')' ;
+call : '(' (ID(.ID)* (',' ID(.ID)*)*)? ')' ;*/
 
 idestructura: '.' ID ('.' idestructura)* ;
 
@@ -95,11 +135,13 @@ COMENTARIO_LINEA : '//' ~ [\r\n]* -> skip;
 
 COMENTARIO_BLOQUE : '/*' .*? '*/' -> skip;
 
+BOOLEANO: 'falso' | 'verdadero';
+
 ID : [a-zA-Z][a-zA-Z0-9_]*;
 
 ENTERO: [1-9][0-9]* | '0';
 
-REAL: [0-9]+.[0-9]+ ;
+REAL: [0-9]+'.'[0-9]+ ;
 
 CARACTER: '\'' [a-zA-Z0-9_] '\'' | '\'\\n\'' ;
 
