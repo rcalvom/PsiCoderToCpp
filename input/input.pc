@@ -1,10 +1,15 @@
 funcion entero sumar (entero a, entero b) hacer
-    //retorno a + b;
     imprimir("a plus b");
 fin_funcion
 
+estructura Carro
+    cadena placa, marca;
+    entero puertas, sillas;
+    booleano automatico;
+    caracter color;
+fin_estructura
+
 funcion entero restar (entero a, entero b) hacer
-    //retorno a - b;
     imprimir("a minus b");
 fin_funcion
 
@@ -13,16 +18,13 @@ funcion_principal
 fin_principal
 
 funcion entero sumar (entero a, entero b) hacer
-    //retorno a + b;
     imprimir("a plus b");
 fin_funcion
 
 funcion entero restar (entero a, entero b) hacer
-    //retorno a - b;
     imprimir("a minus b");
 fin_funcion
 
 funcion entero multiplicar (entero a, entero b) hacer
-    //retorno a * b;
     imprimir("a times b");
 fin_funcion

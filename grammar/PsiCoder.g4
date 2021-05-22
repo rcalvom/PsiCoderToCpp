@@ -8,7 +8,7 @@ param_funcion :  (tipo ID (',' tipo ID)* )?;
 
 estructura : 'estructura' ID (sentencia_estructura)* 'fin_estructura' ;
 
-sentencia_estructura : tipo ';' ;
+sentencia_estructura : tipo ID (',' ID)* ';' ;
 
 principal : 'funcion_principal' (sentencia)+ 'fin_principal' ;
 
@@ -78,54 +78,6 @@ operador_unitario
     | '!'
     ;
 
-/*dec_variable: ID (asignacion)* (',' dec_variable)* ;
-
-asignacion: '=' expresion ;
-
-
-
-expresion: valor (operador)* (expresion)* ;
-
-
-operador
-    : '&&'
-    | '||'
-    | '=='
-    | '!='
-    | '<'
-    | '>'
-    | '<='
-    | '>='
-    | '+'
-    | '-'
-    | '*'
-    | '%'
-    | '/'
-    ;
-
-valor
-    : '(' expresion ')'
-    | '-'
-    | '!'
-    | 'verdadero'
-    | 'falso'
-    | idcall
-    | numero_palabra
-    ;
-
-numero_palabra
-    : ENTERO
-    | REAL
-    | CARACTER
-    | CADENA
-    ;
-
-idcall : ID (idestructura | call)? ;
-
-call : '(' (ID(.ID)* (',' ID(.ID)*)*)? ')' ;*/
-
-idestructura: '.' ID ('.' idestructura)* ;
-
 id : ID('.' ID)*;
 
 ESPACIADO : [ \t\r\n]+ -> skip;
@@ -145,5 +97,3 @@ REAL: [0-9]+'.'[0-9]+ ;
 CARACTER: '\'' [a-zA-Z0-9_] '\'' | '\'\\n\'' ;
 
 CADENA: '"' [a-zA-Z0-9_ ]* '"' ;
-
-

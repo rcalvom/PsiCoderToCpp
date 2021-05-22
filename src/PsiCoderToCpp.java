@@ -1,9 +1,7 @@
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.List;
 
 public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
 
@@ -80,6 +78,32 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
     }
 
     @Override
+    public T visitEstructura(PsiCoderParser.EstructuraContext ctx) {
+        this.write("struct ");
+        this.write(ctx.ID().getText() + " {\n");
+        this.tabs++;
+        for(int i = 0; i < ctx.sentencia_estructura().size(); i++){
+            this.write("\t".repeat(this.tabs));
+            visitSentencia_estructura(ctx.sentencia_estructura(i));
+            this.write("\n");
+        }
+        this.tabs--;
+        this.write("};\n\n");
+        return null;
+    }
+
+    @Override
+    public T visitSentencia_estructura(PsiCoderParser.Sentencia_estructuraContext ctx) {
+        visitTipo(ctx.tipo());
+        this.write(" " + ctx.ID(0).getText());
+        for(int i = 1; i < ctx.ID().size(); i++){
+            this.write(", " + ctx.ID(i).getText());
+        }
+        this.write(";");
+        return null;
+    }
+
+    @Override
     public T visitPrincipal(PsiCoderParser.PrincipalContext ctx) {
         this.write("\t".repeat(this.tabs));
         this.write("int main(){\n");
@@ -89,7 +113,6 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
             visitSentencia(ctx.sentencia(i));
             this.write("\n");
         }
-        //this.write("\n");
         this.write("\t".repeat(this.tabs));
         this.write("return 0;\n");
         this.tabs--;
@@ -120,7 +143,6 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         if(ctx.ENTERO() != null){
             this.write(ctx.ENTERO().getText());
         }else if(ctx.REAL() != null){
-            String s = ctx.REAL().getText();
             this.write(ctx.REAL().getText());
         }else if(ctx.BOOLEANO() != null){
             if(ctx.BOOLEANO().getText().equals("verdadero")){
