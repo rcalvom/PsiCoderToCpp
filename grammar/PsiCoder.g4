@@ -1,15 +1,14 @@
 grammar PsiCoder;
 
-//s : (funcion | estructura)* principal (funcion | estructura)* EOF ;
-s : (funcion)* principal (funcion)* EOF ;
+s : (funcion | estructura)* principal (funcion | estructura)* EOF ;
 
 funcion :  'funcion' tipo ID '(' param_funcion ')' 'hacer' (sentencia)* 'fin_funcion' ;
 
 param_funcion :  (tipo ID (',' tipo ID)* )?;
 
-//estructura : 'estructura' ID (atributo)* 'fin_estructura' ;
+estructura : 'estructura' ID (sentencia_estructura)* 'fin_estructura' ;
 
-//atributo : tipo dec_variable ';' ;
+sentencia_estructura : tipo ';' ;
 
 principal : 'funcion_principal' (sentencia)+ 'fin_principal' ;
 

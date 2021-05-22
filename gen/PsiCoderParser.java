@@ -22,31 +22,34 @@ public class PsiCoderParser extends Parser {
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
 		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
 		T__38=39, T__39=40, T__40=41, T__41=42, T__42=43, T__43=44, T__44=45, 
-		T__45=46, T__46=47, T__47=48, ESPACIADO=49, COMENTARIO_LINEA=50, COMENTARIO_BLOQUE=51, 
-		BOOLEANO=52, ID=53, ENTERO=54, REAL=55, CARACTER=56, CADENA=57;
+		T__45=46, T__46=47, T__47=48, T__48=49, T__49=50, ESPACIADO=51, COMENTARIO_LINEA=52, 
+		COMENTARIO_BLOQUE=53, BOOLEANO=54, ID=55, ENTERO=56, REAL=57, CARACTER=58, 
+		CADENA=59;
 	public static final int
-		RULE_s = 0, RULE_funcion = 1, RULE_param_funcion = 2, RULE_principal = 3, 
-		RULE_sentencia = 4, RULE_imprimir = 5, RULE_caso = 6, RULE_tipo = 7, RULE_expresion = 8, 
-		RULE_llamado_funcion = 9, RULE_operador_binario = 10, RULE_operador_unitario = 11, 
-		RULE_idestructura = 12, RULE_id = 13;
+		RULE_s = 0, RULE_funcion = 1, RULE_param_funcion = 2, RULE_estructura = 3, 
+		RULE_sentencia_estructura = 4, RULE_principal = 5, RULE_sentencia = 6, 
+		RULE_imprimir = 7, RULE_caso = 8, RULE_tipo = 9, RULE_expresion = 10, 
+		RULE_llamado_funcion = 11, RULE_operador_binario = 12, RULE_operador_unitario = 13, 
+		RULE_idestructura = 14, RULE_id = 15;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"s", "funcion", "param_funcion", "principal", "sentencia", "imprimir", 
-			"caso", "tipo", "expresion", "llamado_funcion", "operador_binario", "operador_unitario", 
-			"idestructura", "id"
+			"s", "funcion", "param_funcion", "estructura", "sentencia_estructura", 
+			"principal", "sentencia", "imprimir", "caso", "tipo", "expresion", "llamado_funcion", 
+			"operador_binario", "operador_unitario", "idestructura", "id"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'funcion'", "'('", "')'", "'hacer'", "'fin_funcion'", "','", "'funcion_principal'", 
-			"'fin_principal'", "'si'", "'entonces'", "'si_no'", "'fin_si'", "'seleccionar'", 
-			"'entre'", "'fin_seleccionar'", "'para'", "'='", "';'", "'fin_para'", 
-			"'mientras'", "'fin_mientras'", "'leer'", "'retorno'", "'romper'", "'imprimir'", 
-			"'caso'", "':'", "'defecto'", "'entero'", "'booleano'", "'caracter'", 
-			"'real'", "'cadena'", "'&&'", "'||'", "'=='", "'!='", "'<'", "'>'", "'<='", 
-			"'>='", "'+'", "'-'", "'*'", "'%'", "'/'", "'!'", "'.'"
+			null, "'funcion'", "'('", "')'", "'hacer'", "'fin_funcion'", "','", "'estructura'", 
+			"'fin_estructura'", "';'", "'funcion_principal'", "'fin_principal'", 
+			"'si'", "'entonces'", "'si_no'", "'fin_si'", "'seleccionar'", "'entre'", 
+			"'fin_seleccionar'", "'para'", "'='", "'fin_para'", "'mientras'", "'fin_mientras'", 
+			"'leer'", "'retorno'", "'romper'", "'imprimir'", "'caso'", "':'", "'defecto'", 
+			"'entero'", "'booleano'", "'caracter'", "'real'", "'cadena'", "'&&'", 
+			"'||'", "'=='", "'!='", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", 
+			"'%'", "'/'", "'!'", "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -56,8 +59,8 @@ public class PsiCoderParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, "ESPACIADO", "COMENTARIO_LINEA", "COMENTARIO_BLOQUE", "BOOLEANO", 
-			"ID", "ENTERO", "REAL", "CARACTER", "CADENA"
+			null, null, null, "ESPACIADO", "COMENTARIO_LINEA", "COMENTARIO_BLOQUE", 
+			"BOOLEANO", "ID", "ENTERO", "REAL", "CARACTER", "CADENA"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -122,6 +125,12 @@ public class PsiCoderParser extends Parser {
 		public FuncionContext funcion(int i) {
 			return getRuleContext(FuncionContext.class,i);
 		}
+		public List<EstructuraContext> estructura() {
+			return getRuleContexts(EstructuraContext.class);
+		}
+		public EstructuraContext estructura(int i) {
+			return getRuleContext(EstructuraContext.class,i);
+		}
 		public SContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -148,37 +157,65 @@ public class PsiCoderParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(31);
+			setState(36);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__0) {
+			while (_la==T__0 || _la==T__6) {
 				{
-				{
-				setState(28);
-				funcion();
+				setState(34);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case T__0:
+					{
+					setState(32);
+					funcion();
+					}
+					break;
+				case T__6:
+					{
+					setState(33);
+					estructura();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
 				}
-				setState(33);
+				setState(38);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(34);
+			setState(39);
 			principal();
-			setState(38);
+			setState(44);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__0) {
+			while (_la==T__0 || _la==T__6) {
 				{
-				{
-				setState(35);
-				funcion();
+				setState(42);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case T__0:
+					{
+					setState(40);
+					funcion();
+					}
+					break;
+				case T__6:
+					{
+					setState(41);
+					estructura();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
 				}
-				setState(40);
+				setState(46);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(41);
+			setState(47);
 			match(EOF);
 			}
 		}
@@ -233,35 +270,35 @@ public class PsiCoderParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(43);
-			match(T__0);
-			setState(44);
-			tipo();
-			setState(45);
-			match(ID);
-			setState(46);
-			match(T__1);
-			setState(47);
-			param_funcion();
-			setState(48);
-			match(T__2);
 			setState(49);
-			match(T__3);
+			match(T__0);
+			setState(50);
+			tipo();
+			setState(51);
+			match(ID);
+			setState(52);
+			match(T__1);
 			setState(53);
+			param_funcion();
+			setState(54);
+			match(T__2);
+			setState(55);
+			match(T__3);
+			setState(59);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(50);
+				setState(56);
 				sentencia();
 				}
 				}
-				setState(55);
+				setState(61);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(56);
+			setState(62);
 			match(T__4);
 			}
 		}
@@ -313,36 +350,149 @@ public class PsiCoderParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(75);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
 				{
-				setState(58);
+				setState(64);
 				tipo();
-				setState(59);
+				setState(65);
 				match(ID);
-				setState(66);
+				setState(72);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__5) {
 					{
 					{
-					setState(60);
+					setState(66);
 					match(T__5);
-					setState(61);
+					setState(67);
 					tipo();
-					setState(62);
+					setState(68);
 					match(ID);
 					}
 					}
-					setState(68);
+					setState(74);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class EstructuraContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(PsiCoderParser.ID, 0); }
+		public List<Sentencia_estructuraContext> sentencia_estructura() {
+			return getRuleContexts(Sentencia_estructuraContext.class);
+		}
+		public Sentencia_estructuraContext sentencia_estructura(int i) {
+			return getRuleContext(Sentencia_estructuraContext.class,i);
+		}
+		public EstructuraContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_estructura; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PsiCoderListener ) ((PsiCoderListener)listener).enterEstructura(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PsiCoderListener ) ((PsiCoderListener)listener).exitEstructura(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsiCoderVisitor ) return ((PsiCoderVisitor<? extends T>)visitor).visitEstructura(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final EstructuraContext estructura() throws RecognitionException {
+		EstructuraContext _localctx = new EstructuraContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_estructura);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(77);
+			match(T__6);
+			setState(78);
+			match(ID);
+			setState(82);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
+				{
+				{
+				setState(79);
+				sentencia_estructura();
+				}
+				}
+				setState(84);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(85);
+			match(T__7);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Sentencia_estructuraContext extends ParserRuleContext {
+		public TipoContext tipo() {
+			return getRuleContext(TipoContext.class,0);
+		}
+		public Sentencia_estructuraContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_sentencia_estructura; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PsiCoderListener ) ((PsiCoderListener)listener).enterSentencia_estructura(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PsiCoderListener ) ((PsiCoderListener)listener).exitSentencia_estructura(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsiCoderVisitor ) return ((PsiCoderVisitor<? extends T>)visitor).visitSentencia_estructura(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Sentencia_estructuraContext sentencia_estructura() throws RecognitionException {
+		Sentencia_estructuraContext _localctx = new Sentencia_estructuraContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_sentencia_estructura);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(87);
+			tipo();
+			setState(88);
+			match(T__8);
 			}
 		}
 		catch (RecognitionException re) {
@@ -384,29 +534,29 @@ public class PsiCoderParser extends Parser {
 
 	public final PrincipalContext principal() throws RecognitionException {
 		PrincipalContext _localctx = new PrincipalContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_principal);
+		enterRule(_localctx, 10, RULE_principal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(71);
-			match(T__6);
-			setState(73); 
+			setState(90);
+			match(T__9);
+			setState(92); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(72);
+				setState(91);
 				sentencia();
 				}
 				}
-				setState(75); 
+				setState(94); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0) );
-			setState(77);
-			match(T__7);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0) );
+			setState(96);
+			match(T__10);
 			}
 		}
 		catch (RecognitionException re) {
@@ -472,356 +622,356 @@ public class PsiCoderParser extends Parser {
 
 	public final SentenciaContext sentencia() throws RecognitionException {
 		SentenciaContext _localctx = new SentenciaContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_sentencia);
+		enterRule(_localctx, 12, RULE_sentencia);
 		int _la;
 		try {
 			int _alt;
-			setState(211);
+			setState(230);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(79);
-				match(T__8);
-				setState(80);
+				setState(98);
+				match(T__11);
+				setState(99);
 				match(T__1);
-				setState(81);
+				setState(100);
 				expresion(0);
-				setState(82);
+				setState(101);
 				match(T__2);
-				setState(83);
-				match(T__9);
-				setState(87);
+				setState(102);
+				match(T__12);
+				setState(106);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
 					{
 					{
-					setState(84);
+					setState(103);
 					sentencia();
 					}
 					}
-					setState(89);
+					setState(108);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(97);
+				setState(116);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==T__10) {
+				if (_la==T__13) {
 					{
-					setState(90);
-					match(T__10);
-					setState(94);
+					setState(109);
+					match(T__13);
+					setState(113);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
+					while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
 						{
 						{
-						setState(91);
+						setState(110);
 						sentencia();
 						}
 						}
-						setState(96);
+						setState(115);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 					}
 					}
 				}
 
-				setState(99);
-				match(T__11);
+				setState(118);
+				match(T__14);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(101);
-				match(T__12);
-				setState(102);
+				setState(120);
+				match(T__15);
+				setState(121);
 				match(T__1);
-				setState(103);
+				setState(122);
 				expresion(0);
-				setState(104);
+				setState(123);
 				match(T__2);
-				setState(105);
-				match(T__13);
-				setState(107); 
+				setState(124);
+				match(T__16);
+				setState(126); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(106);
+					setState(125);
 					caso();
 					}
 					}
-					setState(109); 
+					setState(128); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( _la==T__25 || _la==T__27 );
-				setState(111);
-				match(T__14);
+				} while ( _la==T__27 || _la==T__29 );
+				setState(130);
+				match(T__17);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(113);
-				match(T__15);
-				setState(114);
+				setState(132);
+				match(T__18);
+				setState(133);
 				match(T__1);
-				setState(116);
+				setState(135);
 				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+				switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 				case 1:
 					{
-					setState(115);
+					setState(134);
 					tipo();
 					}
 					break;
 				}
-				setState(118);
+				setState(137);
 				id();
-				setState(119);
-				match(T__16);
-				setState(120);
+				setState(138);
+				match(T__19);
+				setState(139);
 				expresion(0);
-				setState(121);
-				match(T__17);
-				setState(122);
+				setState(140);
+				match(T__8);
+				setState(141);
 				expresion(0);
-				setState(123);
-				match(T__17);
-				setState(124);
+				setState(142);
+				match(T__8);
+				setState(143);
 				expresion(0);
-				setState(125);
+				setState(144);
 				match(T__2);
-				setState(126);
+				setState(145);
 				match(T__3);
-				setState(130);
+				setState(149);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
 					{
 					{
-					setState(127);
+					setState(146);
 					sentencia();
 					}
 					}
-					setState(132);
+					setState(151);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(133);
-				match(T__18);
+				setState(152);
+				match(T__20);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(135);
+				setState(154);
 				match(T__3);
-				setState(139);
+				setState(158);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
 						{
-						setState(136);
+						setState(155);
 						sentencia();
 						}
 						} 
 					}
-					setState(141);
+					setState(160);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
+					_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 				}
-				setState(142);
-				match(T__19);
-				setState(143);
-				match(T__1);
-				setState(144);
-				expresion(0);
-				setState(145);
-				match(T__2);
-				setState(146);
-				match(T__17);
-				}
-				break;
-			case 5:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(148);
-				match(T__19);
-				setState(149);
-				match(T__1);
-				setState(150);
-				expresion(0);
-				setState(151);
-				match(T__2);
-				setState(152);
-				match(T__3);
-				setState(156);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
-					{
-					{
-					setState(153);
-					sentencia();
-					}
-					}
-					setState(158);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				setState(159);
-				match(T__20);
-				}
-				break;
-			case 6:
-				enterOuterAlt(_localctx, 6);
-				{
 				setState(161);
 				match(T__21);
 				setState(162);
 				match(T__1);
 				setState(163);
-				id();
+				expresion(0);
 				setState(164);
 				match(T__2);
 				setState(165);
-				match(T__17);
+				match(T__8);
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(167);
+				match(T__21);
+				setState(168);
+				match(T__1);
+				setState(169);
+				expresion(0);
+				setState(170);
+				match(T__2);
+				setState(171);
+				match(T__3);
+				setState(175);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
+					{
+					{
+					setState(172);
+					sentencia();
+					}
+					}
+					setState(177);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(178);
+				match(T__22);
+				}
+				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(180);
+				match(T__23);
+				setState(181);
+				match(T__1);
+				setState(182);
+				id();
+				setState(183);
+				match(T__2);
+				setState(184);
+				match(T__8);
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(167);
+				setState(186);
 				imprimir();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(168);
-				match(T__22);
-				setState(169);
+				setState(187);
+				match(T__24);
+				setState(188);
 				expresion(0);
-				setState(170);
-				match(T__17);
+				setState(189);
+				match(T__8);
 				}
 				break;
 			case 9:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(172);
+				setState(191);
 				tipo();
-				setState(173);
+				setState(192);
 				id();
-				setState(176);
+				setState(195);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==T__16) {
+				if (_la==T__19) {
 					{
-					setState(174);
-					match(T__16);
-					setState(175);
+					setState(193);
+					match(T__19);
+					setState(194);
 					expresion(0);
 					}
 				}
 
-				setState(186);
+				setState(205);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__5) {
 					{
 					{
-					setState(178);
+					setState(197);
 					match(T__5);
-					setState(179);
+					setState(198);
 					id();
-					setState(182);
+					setState(201);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					if (_la==T__16) {
+					if (_la==T__19) {
 						{
-						setState(180);
-						match(T__16);
-						setState(181);
+						setState(199);
+						match(T__19);
+						setState(200);
 						expresion(0);
 						}
 					}
 
 					}
 					}
-					setState(188);
+					setState(207);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(189);
-				match(T__17);
+				setState(208);
+				match(T__8);
 				}
 				break;
 			case 10:
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(191);
+				setState(210);
 				id();
-				setState(194);
+				setState(213);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==T__16) {
+				if (_la==T__19) {
 					{
-					setState(192);
-					match(T__16);
-					setState(193);
+					setState(211);
+					match(T__19);
+					setState(212);
 					expresion(0);
 					}
 				}
 
-				setState(204);
+				setState(223);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__5) {
 					{
 					{
-					setState(196);
+					setState(215);
 					match(T__5);
-					setState(197);
+					setState(216);
 					id();
-					setState(200);
+					setState(219);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					if (_la==T__16) {
+					if (_la==T__19) {
 						{
-						setState(198);
-						match(T__16);
-						setState(199);
+						setState(217);
+						match(T__19);
+						setState(218);
 						expresion(0);
 						}
 					}
 
 					}
 					}
-					setState(206);
+					setState(225);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(207);
-				match(T__17);
+				setState(226);
+				match(T__8);
 				}
 				break;
 			case 11:
 				enterOuterAlt(_localctx, 11);
 				{
-				setState(209);
-				match(T__23);
-				setState(210);
-				match(T__17);
+				setState(228);
+				match(T__25);
+				setState(229);
+				match(T__8);
 				}
 				break;
 			}
@@ -865,37 +1015,37 @@ public class PsiCoderParser extends Parser {
 
 	public final ImprimirContext imprimir() throws RecognitionException {
 		ImprimirContext _localctx = new ImprimirContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_imprimir);
+		enterRule(_localctx, 14, RULE_imprimir);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(213);
-			match(T__24);
-			setState(214);
+			setState(232);
+			match(T__26);
+			setState(233);
 			match(T__1);
-			setState(215);
+			setState(234);
 			expresion(0);
-			setState(220);
+			setState(239);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__5) {
 				{
 				{
-				setState(216);
+				setState(235);
 				match(T__5);
-				setState(217);
+				setState(236);
 				expresion(0);
 				}
 				}
-				setState(222);
+				setState(241);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(223);
+			setState(242);
 			match(T__2);
-			setState(224);
-			match(T__17);
+			setState(243);
+			match(T__8);
 			}
 		}
 		catch (RecognitionException re) {
@@ -940,55 +1090,55 @@ public class PsiCoderParser extends Parser {
 
 	public final CasoContext caso() throws RecognitionException {
 		CasoContext _localctx = new CasoContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_caso);
+		enterRule(_localctx, 16, RULE_caso);
 		int _la;
 		try {
-			setState(243);
+			setState(262);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__25:
+			case T__27:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(226);
-				match(T__25);
-				setState(227);
+				setState(245);
+				match(T__27);
+				setState(246);
 				expresion(0);
-				setState(228);
-				match(T__26);
-				setState(232);
+				setState(247);
+				match(T__28);
+				setState(251);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
 					{
 					{
-					setState(229);
+					setState(248);
 					sentencia();
 					}
 					}
-					setState(234);
+					setState(253);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 				break;
-			case T__27:
+			case T__29:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(235);
-				match(T__27);
-				setState(236);
-				match(T__26);
-				setState(240);
+				setState(254);
+				match(T__29);
+				setState(255);
+				match(T__28);
+				setState(259);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__8) | (1L << T__12) | (1L << T__15) | (1L << T__19) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << ID))) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__11) | (1L << T__15) | (1L << T__18) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << ID))) != 0)) {
 					{
 					{
-					setState(237);
+					setState(256);
 					sentencia();
 					}
 					}
-					setState(242);
+					setState(261);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -1034,51 +1184,51 @@ public class PsiCoderParser extends Parser {
 
 	public final TipoContext tipo() throws RecognitionException {
 		TipoContext _localctx = new TipoContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_tipo);
+		enterRule(_localctx, 18, RULE_tipo);
 		try {
-			setState(251);
+			setState(270);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(245);
+				setState(264);
 				id();
 				}
 				break;
-			case T__28:
+			case T__30:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(246);
-				match(T__28);
-				}
-				break;
-			case T__29:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(247);
-				match(T__29);
-				}
-				break;
-			case T__30:
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(248);
+				setState(265);
 				match(T__30);
 				}
 				break;
 			case T__31:
-				enterOuterAlt(_localctx, 5);
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(249);
+				setState(266);
 				match(T__31);
 				}
 				break;
 			case T__32:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(267);
+				match(T__32);
+				}
+				break;
+			case T__33:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(268);
+				match(T__33);
+				}
+				break;
+			case T__34:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(250);
-				match(T__32);
+				setState(269);
+				match(T__34);
 				}
 				break;
 			default:
@@ -1148,80 +1298,80 @@ public class PsiCoderParser extends Parser {
 		int _parentState = getState();
 		ExpresionContext _localctx = new ExpresionContext(_ctx, _parentState);
 		ExpresionContext _prevctx = _localctx;
-		int _startState = 16;
-		enterRecursionRule(_localctx, 16, RULE_expresion, _p);
+		int _startState = 20;
+		enterRecursionRule(_localctx, 20, RULE_expresion, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(268);
+			setState(287);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
 			case 1:
 				{
-				setState(254);
+				setState(273);
 				match(ENTERO);
 				}
 				break;
 			case 2:
 				{
-				setState(255);
+				setState(274);
 				match(REAL);
 				}
 				break;
 			case 3:
 				{
-				setState(256);
+				setState(275);
 				match(BOOLEANO);
 				}
 				break;
 			case 4:
 				{
-				setState(257);
+				setState(276);
 				match(CADENA);
 				}
 				break;
 			case 5:
 				{
-				setState(258);
+				setState(277);
 				match(CARACTER);
 				}
 				break;
 			case 6:
 				{
-				setState(259);
+				setState(278);
 				id();
 				}
 				break;
 			case 7:
 				{
-				setState(260);
+				setState(279);
 				llamado_funcion();
 				}
 				break;
 			case 8:
 				{
-				setState(261);
+				setState(280);
 				match(T__1);
-				setState(262);
+				setState(281);
 				expresion(0);
-				setState(263);
+				setState(282);
 				match(T__2);
 				}
 				break;
 			case 9:
 				{
-				setState(265);
+				setState(284);
 				operador_unitario();
-				setState(266);
+				setState(285);
 				expresion(1);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(276);
+			setState(295);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,30,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -1230,18 +1380,18 @@ public class PsiCoderParser extends Parser {
 					{
 					_localctx = new ExpresionContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_expresion);
-					setState(270);
+					setState(289);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(271);
+					setState(290);
 					operador_binario();
-					setState(272);
+					setState(291);
 					expresion(3);
 					}
 					} 
 				}
-				setState(278);
+				setState(297);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,30,_ctx);
 			}
 			}
 		}
@@ -1287,42 +1437,42 @@ public class PsiCoderParser extends Parser {
 
 	public final Llamado_funcionContext llamado_funcion() throws RecognitionException {
 		Llamado_funcionContext _localctx = new Llamado_funcionContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_llamado_funcion);
+		enterRule(_localctx, 22, RULE_llamado_funcion);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(279);
+			setState(298);
 			id();
-			setState(280);
+			setState(299);
 			match(T__1);
-			setState(289);
+			setState(308);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__42) | (1L << T__46) | (1L << BOOLEANO) | (1L << ID) | (1L << ENTERO) | (1L << REAL) | (1L << CARACTER) | (1L << CADENA))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__44) | (1L << T__48) | (1L << BOOLEANO) | (1L << ID) | (1L << ENTERO) | (1L << REAL) | (1L << CARACTER) | (1L << CADENA))) != 0)) {
 				{
-				setState(281);
+				setState(300);
 				expresion(0);
-				setState(286);
+				setState(305);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__5) {
 					{
 					{
-					setState(282);
+					setState(301);
 					match(T__5);
-					setState(283);
+					setState(302);
 					expresion(0);
 					}
 					}
-					setState(288);
+					setState(307);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(291);
+			setState(310);
 			match(T__2);
 			}
 		}
@@ -1359,14 +1509,14 @@ public class PsiCoderParser extends Parser {
 
 	public final Operador_binarioContext operador_binario() throws RecognitionException {
 		Operador_binarioContext _localctx = new Operador_binarioContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_operador_binario);
+		enterRule(_localctx, 24, RULE_operador_binario);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(293);
+			setState(312);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__33) | (1L << T__34) | (1L << T__35) | (1L << T__36) | (1L << T__37) | (1L << T__38) | (1L << T__39) | (1L << T__40) | (1L << T__41) | (1L << T__42) | (1L << T__43) | (1L << T__44) | (1L << T__45))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__35) | (1L << T__36) | (1L << T__37) | (1L << T__38) | (1L << T__39) | (1L << T__40) | (1L << T__41) | (1L << T__42) | (1L << T__43) | (1L << T__44) | (1L << T__45) | (1L << T__46) | (1L << T__47))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1409,14 +1559,14 @@ public class PsiCoderParser extends Parser {
 
 	public final Operador_unitarioContext operador_unitario() throws RecognitionException {
 		Operador_unitarioContext _localctx = new Operador_unitarioContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_operador_unitario);
+		enterRule(_localctx, 26, RULE_operador_unitario);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(295);
+			setState(314);
 			_la = _input.LA(1);
-			if ( !(_la==T__42 || _la==T__46) ) {
+			if ( !(_la==T__44 || _la==T__48) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1466,32 +1616,32 @@ public class PsiCoderParser extends Parser {
 
 	public final IdestructuraContext idestructura() throws RecognitionException {
 		IdestructuraContext _localctx = new IdestructuraContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_idestructura);
+		enterRule(_localctx, 28, RULE_idestructura);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(297);
-			match(T__47);
-			setState(298);
+			setState(316);
+			match(T__49);
+			setState(317);
 			match(ID);
-			setState(303);
+			setState(322);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,30,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(299);
-					match(T__47);
-					setState(300);
+					setState(318);
+					match(T__49);
+					setState(319);
 					idestructura();
 					}
 					} 
 				}
-				setState(305);
+				setState(324);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,30,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
 			}
 			}
 		}
@@ -1532,30 +1682,30 @@ public class PsiCoderParser extends Parser {
 
 	public final IdContext id() throws RecognitionException {
 		IdContext _localctx = new IdContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_id);
+		enterRule(_localctx, 30, RULE_id);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(306);
+			setState(325);
 			match(ID);
-			setState(311);
+			setState(330);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,31,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,34,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(307);
-					match(T__47);
-					setState(308);
+					setState(326);
+					match(T__49);
+					setState(327);
 					match(ID);
 					}
 					} 
 				}
-				setState(313);
+				setState(332);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,31,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,34,_ctx);
 			}
 			}
 		}
@@ -1572,7 +1722,7 @@ public class PsiCoderParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 8:
+		case 10:
 			return expresion_sempred((ExpresionContext)_localctx, predIndex);
 		}
 		return true;
@@ -1586,118 +1736,125 @@ public class PsiCoderParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3;\u013d\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3=\u0150\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
-		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\7\2 \n\2\f\2\16\2#\13\2\3"+
-		"\2\3\2\7\2\'\n\2\f\2\16\2*\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\7\3\66\n\3\f\3\16\39\13\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\7\4C\n\4"+
-		"\f\4\16\4F\13\4\5\4H\n\4\3\5\3\5\6\5L\n\5\r\5\16\5M\3\5\3\5\3\6\3\6\3"+
-		"\6\3\6\3\6\3\6\7\6X\n\6\f\6\16\6[\13\6\3\6\3\6\7\6_\n\6\f\6\16\6b\13\6"+
-		"\5\6d\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\6\6n\n\6\r\6\16\6o\3\6\3\6\3"+
-		"\6\3\6\3\6\5\6w\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6\u0083"+
-		"\n\6\f\6\16\6\u0086\13\6\3\6\3\6\3\6\3\6\7\6\u008c\n\6\f\6\16\6\u008f"+
-		"\13\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6\u009d\n\6\f"+
-		"\6\16\6\u00a0\13\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6"+
-		"\3\6\3\6\3\6\3\6\5\6\u00b3\n\6\3\6\3\6\3\6\3\6\5\6\u00b9\n\6\7\6\u00bb"+
-		"\n\6\f\6\16\6\u00be\13\6\3\6\3\6\3\6\3\6\3\6\5\6\u00c5\n\6\3\6\3\6\3\6"+
-		"\3\6\5\6\u00cb\n\6\7\6\u00cd\n\6\f\6\16\6\u00d0\13\6\3\6\3\6\3\6\3\6\5"+
-		"\6\u00d6\n\6\3\7\3\7\3\7\3\7\3\7\7\7\u00dd\n\7\f\7\16\7\u00e0\13\7\3\7"+
-		"\3\7\3\7\3\b\3\b\3\b\3\b\7\b\u00e9\n\b\f\b\16\b\u00ec\13\b\3\b\3\b\3\b"+
-		"\7\b\u00f1\n\b\f\b\16\b\u00f4\13\b\5\b\u00f6\n\b\3\t\3\t\3\t\3\t\3\t\3"+
-		"\t\5\t\u00fe\n\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3"+
-		"\n\3\n\5\n\u010f\n\n\3\n\3\n\3\n\3\n\7\n\u0115\n\n\f\n\16\n\u0118\13\n"+
-		"\3\13\3\13\3\13\3\13\3\13\7\13\u011f\n\13\f\13\16\13\u0122\13\13\5\13"+
-		"\u0124\n\13\3\13\3\13\3\f\3\f\3\r\3\r\3\16\3\16\3\16\3\16\7\16\u0130\n"+
-		"\16\f\16\16\16\u0133\13\16\3\17\3\17\3\17\7\17\u0138\n\17\f\17\16\17\u013b"+
-		"\13\17\3\17\2\3\22\20\2\4\6\b\n\f\16\20\22\24\26\30\32\34\2\4\3\2$\60"+
-		"\4\2--\61\61\2\u0162\2!\3\2\2\2\4-\3\2\2\2\6G\3\2\2\2\bI\3\2\2\2\n\u00d5"+
-		"\3\2\2\2\f\u00d7\3\2\2\2\16\u00f5\3\2\2\2\20\u00fd\3\2\2\2\22\u010e\3"+
-		"\2\2\2\24\u0119\3\2\2\2\26\u0127\3\2\2\2\30\u0129\3\2\2\2\32\u012b\3\2"+
-		"\2\2\34\u0134\3\2\2\2\36 \5\4\3\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2"+
-		"!\"\3\2\2\2\"$\3\2\2\2#!\3\2\2\2$(\5\b\5\2%\'\5\4\3\2&%\3\2\2\2\'*\3\2"+
-		"\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2*(\3\2\2\2+,\7\2\2\3,\3\3\2\2\2-.\7"+
-		"\3\2\2./\5\20\t\2/\60\7\67\2\2\60\61\7\4\2\2\61\62\5\6\4\2\62\63\7\5\2"+
-		"\2\63\67\7\6\2\2\64\66\5\n\6\2\65\64\3\2\2\2\669\3\2\2\2\67\65\3\2\2\2"+
-		"\678\3\2\2\28:\3\2\2\29\67\3\2\2\2:;\7\7\2\2;\5\3\2\2\2<=\5\20\t\2=D\7"+
-		"\67\2\2>?\7\b\2\2?@\5\20\t\2@A\7\67\2\2AC\3\2\2\2B>\3\2\2\2CF\3\2\2\2"+
-		"DB\3\2\2\2DE\3\2\2\2EH\3\2\2\2FD\3\2\2\2G<\3\2\2\2GH\3\2\2\2H\7\3\2\2"+
-		"\2IK\7\t\2\2JL\5\n\6\2KJ\3\2\2\2LM\3\2\2\2MK\3\2\2\2MN\3\2\2\2NO\3\2\2"+
-		"\2OP\7\n\2\2P\t\3\2\2\2QR\7\13\2\2RS\7\4\2\2ST\5\22\n\2TU\7\5\2\2UY\7"+
-		"\f\2\2VX\5\n\6\2WV\3\2\2\2X[\3\2\2\2YW\3\2\2\2YZ\3\2\2\2Zc\3\2\2\2[Y\3"+
-		"\2\2\2\\`\7\r\2\2]_\5\n\6\2^]\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2\2ad"+
-		"\3\2\2\2b`\3\2\2\2c\\\3\2\2\2cd\3\2\2\2de\3\2\2\2ef\7\16\2\2f\u00d6\3"+
-		"\2\2\2gh\7\17\2\2hi\7\4\2\2ij\5\22\n\2jk\7\5\2\2km\7\20\2\2ln\5\16\b\2"+
-		"ml\3\2\2\2no\3\2\2\2om\3\2\2\2op\3\2\2\2pq\3\2\2\2qr\7\21\2\2r\u00d6\3"+
-		"\2\2\2st\7\22\2\2tv\7\4\2\2uw\5\20\t\2vu\3\2\2\2vw\3\2\2\2wx\3\2\2\2x"+
-		"y\5\34\17\2yz\7\23\2\2z{\5\22\n\2{|\7\24\2\2|}\5\22\n\2}~\7\24\2\2~\177"+
-		"\5\22\n\2\177\u0080\7\5\2\2\u0080\u0084\7\6\2\2\u0081\u0083\5\n\6\2\u0082"+
-		"\u0081\3\2\2\2\u0083\u0086\3\2\2\2\u0084\u0082\3\2\2\2\u0084\u0085\3\2"+
-		"\2\2\u0085\u0087\3\2\2\2\u0086\u0084\3\2\2\2\u0087\u0088\7\25\2\2\u0088"+
-		"\u00d6\3\2\2\2\u0089\u008d\7\6\2\2\u008a\u008c\5\n\6\2\u008b\u008a\3\2"+
-		"\2\2\u008c\u008f\3\2\2\2\u008d\u008b\3\2\2\2\u008d\u008e\3\2\2\2\u008e"+
-		"\u0090\3\2\2\2\u008f\u008d\3\2\2\2\u0090\u0091\7\26\2\2\u0091\u0092\7"+
-		"\4\2\2\u0092\u0093\5\22\n\2\u0093\u0094\7\5\2\2\u0094\u0095\7\24\2\2\u0095"+
-		"\u00d6\3\2\2\2\u0096\u0097\7\26\2\2\u0097\u0098\7\4\2\2\u0098\u0099\5"+
-		"\22\n\2\u0099\u009a\7\5\2\2\u009a\u009e\7\6\2\2\u009b\u009d\5\n\6\2\u009c"+
-		"\u009b\3\2\2\2\u009d\u00a0\3\2\2\2\u009e\u009c\3\2\2\2\u009e\u009f\3\2"+
-		"\2\2\u009f\u00a1\3\2\2\2\u00a0\u009e\3\2\2\2\u00a1\u00a2\7\27\2\2\u00a2"+
-		"\u00d6\3\2\2\2\u00a3\u00a4\7\30\2\2\u00a4\u00a5\7\4\2\2\u00a5\u00a6\5"+
-		"\34\17\2\u00a6\u00a7\7\5\2\2\u00a7\u00a8\7\24\2\2\u00a8\u00d6\3\2\2\2"+
-		"\u00a9\u00d6\5\f\7\2\u00aa\u00ab\7\31\2\2\u00ab\u00ac\5\22\n\2\u00ac\u00ad"+
-		"\7\24\2\2\u00ad\u00d6\3\2\2\2\u00ae\u00af\5\20\t\2\u00af\u00b2\5\34\17"+
-		"\2\u00b0\u00b1\7\23\2\2\u00b1\u00b3\5\22\n\2\u00b2\u00b0\3\2\2\2\u00b2"+
-		"\u00b3\3\2\2\2\u00b3\u00bc\3\2\2\2\u00b4\u00b5\7\b\2\2\u00b5\u00b8\5\34"+
-		"\17\2\u00b6\u00b7\7\23\2\2\u00b7\u00b9\5\22\n\2\u00b8\u00b6\3\2\2\2\u00b8"+
-		"\u00b9\3\2\2\2\u00b9\u00bb\3\2\2\2\u00ba\u00b4\3\2\2\2\u00bb\u00be\3\2"+
-		"\2\2\u00bc\u00ba\3\2\2\2\u00bc\u00bd\3\2\2\2\u00bd\u00bf\3\2\2\2\u00be"+
-		"\u00bc\3\2\2\2\u00bf\u00c0\7\24\2\2\u00c0\u00d6\3\2\2\2\u00c1\u00c4\5"+
-		"\34\17\2\u00c2\u00c3\7\23\2\2\u00c3\u00c5\5\22\n\2\u00c4\u00c2\3\2\2\2"+
-		"\u00c4\u00c5\3\2\2\2\u00c5\u00ce\3\2\2\2\u00c6\u00c7\7\b\2\2\u00c7\u00ca"+
-		"\5\34\17\2\u00c8\u00c9\7\23\2\2\u00c9\u00cb\5\22\n\2\u00ca\u00c8\3\2\2"+
-		"\2\u00ca\u00cb\3\2\2\2\u00cb\u00cd\3\2\2\2\u00cc\u00c6\3\2\2\2\u00cd\u00d0"+
-		"\3\2\2\2\u00ce\u00cc\3\2\2\2\u00ce\u00cf\3\2\2\2\u00cf\u00d1\3\2\2\2\u00d0"+
-		"\u00ce\3\2\2\2\u00d1\u00d2\7\24\2\2\u00d2\u00d6\3\2\2\2\u00d3\u00d4\7"+
-		"\32\2\2\u00d4\u00d6\7\24\2\2\u00d5Q\3\2\2\2\u00d5g\3\2\2\2\u00d5s\3\2"+
-		"\2\2\u00d5\u0089\3\2\2\2\u00d5\u0096\3\2\2\2\u00d5\u00a3\3\2\2\2\u00d5"+
-		"\u00a9\3\2\2\2\u00d5\u00aa\3\2\2\2\u00d5\u00ae\3\2\2\2\u00d5\u00c1\3\2"+
-		"\2\2\u00d5\u00d3\3\2\2\2\u00d6\13\3\2\2\2\u00d7\u00d8\7\33\2\2\u00d8\u00d9"+
-		"\7\4\2\2\u00d9\u00de\5\22\n\2\u00da\u00db\7\b\2\2\u00db\u00dd\5\22\n\2"+
-		"\u00dc\u00da\3\2\2\2\u00dd\u00e0\3\2\2\2\u00de\u00dc\3\2\2\2\u00de\u00df"+
-		"\3\2\2\2\u00df\u00e1\3\2\2\2\u00e0\u00de\3\2\2\2\u00e1\u00e2\7\5\2\2\u00e2"+
-		"\u00e3\7\24\2\2\u00e3\r\3\2\2\2\u00e4\u00e5\7\34\2\2\u00e5\u00e6\5\22"+
-		"\n\2\u00e6\u00ea\7\35\2\2\u00e7\u00e9\5\n\6\2\u00e8\u00e7\3\2\2\2\u00e9"+
-		"\u00ec\3\2\2\2\u00ea\u00e8\3\2\2\2\u00ea\u00eb\3\2\2\2\u00eb\u00f6\3\2"+
-		"\2\2\u00ec\u00ea\3\2\2\2\u00ed\u00ee\7\36\2\2\u00ee\u00f2\7\35\2\2\u00ef"+
-		"\u00f1\5\n\6\2\u00f0\u00ef\3\2\2\2\u00f1\u00f4\3\2\2\2\u00f2\u00f0\3\2"+
-		"\2\2\u00f2\u00f3\3\2\2\2\u00f3\u00f6\3\2\2\2\u00f4\u00f2\3\2\2\2\u00f5"+
-		"\u00e4\3\2\2\2\u00f5\u00ed\3\2\2\2\u00f6\17\3\2\2\2\u00f7\u00fe\5\34\17"+
-		"\2\u00f8\u00fe\7\37\2\2\u00f9\u00fe\7 \2\2\u00fa\u00fe\7!\2\2\u00fb\u00fe"+
-		"\7\"\2\2\u00fc\u00fe\7#\2\2\u00fd\u00f7\3\2\2\2\u00fd\u00f8\3\2\2\2\u00fd"+
-		"\u00f9\3\2\2\2\u00fd\u00fa\3\2\2\2\u00fd\u00fb\3\2\2\2\u00fd\u00fc\3\2"+
-		"\2\2\u00fe\21\3\2\2\2\u00ff\u0100\b\n\1\2\u0100\u010f\78\2\2\u0101\u010f"+
-		"\79\2\2\u0102\u010f\7\66\2\2\u0103\u010f\7;\2\2\u0104\u010f\7:\2\2\u0105"+
-		"\u010f\5\34\17\2\u0106\u010f\5\24\13\2\u0107\u0108\7\4\2\2\u0108\u0109"+
-		"\5\22\n\2\u0109\u010a\7\5\2\2\u010a\u010f\3\2\2\2\u010b\u010c\5\30\r\2"+
-		"\u010c\u010d\5\22\n\3\u010d\u010f\3\2\2\2\u010e\u00ff\3\2\2\2\u010e\u0101"+
-		"\3\2\2\2\u010e\u0102\3\2\2\2\u010e\u0103\3\2\2\2\u010e\u0104\3\2\2\2\u010e"+
-		"\u0105\3\2\2\2\u010e\u0106\3\2\2\2\u010e\u0107\3\2\2\2\u010e\u010b\3\2"+
-		"\2\2\u010f\u0116\3\2\2\2\u0110\u0111\f\4\2\2\u0111\u0112\5\26\f\2\u0112"+
-		"\u0113\5\22\n\5\u0113\u0115\3\2\2\2\u0114\u0110\3\2\2\2\u0115\u0118\3"+
-		"\2\2\2\u0116\u0114\3\2\2\2\u0116\u0117\3\2\2\2\u0117\23\3\2\2\2\u0118"+
-		"\u0116\3\2\2\2\u0119\u011a\5\34\17\2\u011a\u0123\7\4\2\2\u011b\u0120\5"+
-		"\22\n\2\u011c\u011d\7\b\2\2\u011d\u011f\5\22\n\2\u011e\u011c\3\2\2\2\u011f"+
-		"\u0122\3\2\2\2\u0120\u011e\3\2\2\2\u0120\u0121\3\2\2\2\u0121\u0124\3\2"+
-		"\2\2\u0122\u0120\3\2\2\2\u0123\u011b\3\2\2\2\u0123\u0124\3\2\2\2\u0124"+
-		"\u0125\3\2\2\2\u0125\u0126\7\5\2\2\u0126\25\3\2\2\2\u0127\u0128\t\2\2"+
-		"\2\u0128\27\3\2\2\2\u0129\u012a\t\3\2\2\u012a\31\3\2\2\2\u012b\u012c\7"+
-		"\62\2\2\u012c\u0131\7\67\2\2\u012d\u012e\7\62\2\2\u012e\u0130\5\32\16"+
-		"\2\u012f\u012d\3\2\2\2\u0130\u0133\3\2\2\2\u0131\u012f\3\2\2\2\u0131\u0132"+
-		"\3\2\2\2\u0132\33\3\2\2\2\u0133\u0131\3\2\2\2\u0134\u0139\7\67\2\2\u0135"+
-		"\u0136\7\62\2\2\u0136\u0138\7\67\2\2\u0137\u0135\3\2\2\2\u0138\u013b\3"+
-		"\2\2\2\u0139\u0137\3\2\2\2\u0139\u013a\3\2\2\2\u013a\35\3\2\2\2\u013b"+
-		"\u0139\3\2\2\2\"!(\67DGMY`cov\u0084\u008d\u009e\u00b2\u00b8\u00bc\u00c4"+
-		"\u00ca\u00ce\u00d5\u00de\u00ea\u00f2\u00f5\u00fd\u010e\u0116\u0120\u0123"+
-		"\u0131\u0139";
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\3\2\7"+
+		"\2%\n\2\f\2\16\2(\13\2\3\2\3\2\3\2\7\2-\n\2\f\2\16\2\60\13\2\3\2\3\2\3"+
+		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3<\n\3\f\3\16\3?\13\3\3\3\3\3\3\4\3\4"+
+		"\3\4\3\4\3\4\3\4\7\4I\n\4\f\4\16\4L\13\4\5\4N\n\4\3\5\3\5\3\5\7\5S\n\5"+
+		"\f\5\16\5V\13\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7\6\7_\n\7\r\7\16\7`\3\7\3\7"+
+		"\3\b\3\b\3\b\3\b\3\b\3\b\7\bk\n\b\f\b\16\bn\13\b\3\b\3\b\7\br\n\b\f\b"+
+		"\16\bu\13\b\5\bw\n\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\6\b\u0081\n\b\r\b"+
+		"\16\b\u0082\3\b\3\b\3\b\3\b\3\b\5\b\u008a\n\b\3\b\3\b\3\b\3\b\3\b\3\b"+
+		"\3\b\3\b\3\b\3\b\7\b\u0096\n\b\f\b\16\b\u0099\13\b\3\b\3\b\3\b\3\b\7\b"+
+		"\u009f\n\b\f\b\16\b\u00a2\13\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b"+
+		"\3\b\3\b\7\b\u00b0\n\b\f\b\16\b\u00b3\13\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b"+
+		"\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\b\u00c6\n\b\3\b\3\b\3\b\3\b"+
+		"\5\b\u00cc\n\b\7\b\u00ce\n\b\f\b\16\b\u00d1\13\b\3\b\3\b\3\b\3\b\3\b\5"+
+		"\b\u00d8\n\b\3\b\3\b\3\b\3\b\5\b\u00de\n\b\7\b\u00e0\n\b\f\b\16\b\u00e3"+
+		"\13\b\3\b\3\b\3\b\3\b\5\b\u00e9\n\b\3\t\3\t\3\t\3\t\3\t\7\t\u00f0\n\t"+
+		"\f\t\16\t\u00f3\13\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\7\n\u00fc\n\n\f\n\16"+
+		"\n\u00ff\13\n\3\n\3\n\3\n\7\n\u0104\n\n\f\n\16\n\u0107\13\n\5\n\u0109"+
+		"\n\n\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u0111\n\13\3\f\3\f\3\f\3\f\3\f"+
+		"\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u0122\n\f\3\f\3\f\3\f\3\f"+
+		"\7\f\u0128\n\f\f\f\16\f\u012b\13\f\3\r\3\r\3\r\3\r\3\r\7\r\u0132\n\r\f"+
+		"\r\16\r\u0135\13\r\5\r\u0137\n\r\3\r\3\r\3\16\3\16\3\17\3\17\3\20\3\20"+
+		"\3\20\3\20\7\20\u0143\n\20\f\20\16\20\u0146\13\20\3\21\3\21\3\21\7\21"+
+		"\u014b\n\21\f\21\16\21\u014e\13\21\3\21\2\3\26\22\2\4\6\b\n\f\16\20\22"+
+		"\24\26\30\32\34\36 \2\4\3\2&\62\4\2//\63\63\2\u0176\2&\3\2\2\2\4\63\3"+
+		"\2\2\2\6M\3\2\2\2\bO\3\2\2\2\nY\3\2\2\2\f\\\3\2\2\2\16\u00e8\3\2\2\2\20"+
+		"\u00ea\3\2\2\2\22\u0108\3\2\2\2\24\u0110\3\2\2\2\26\u0121\3\2\2\2\30\u012c"+
+		"\3\2\2\2\32\u013a\3\2\2\2\34\u013c\3\2\2\2\36\u013e\3\2\2\2 \u0147\3\2"+
+		"\2\2\"%\5\4\3\2#%\5\b\5\2$\"\3\2\2\2$#\3\2\2\2%(\3\2\2\2&$\3\2\2\2&\'"+
+		"\3\2\2\2\')\3\2\2\2(&\3\2\2\2).\5\f\7\2*-\5\4\3\2+-\5\b\5\2,*\3\2\2\2"+
+		",+\3\2\2\2-\60\3\2\2\2.,\3\2\2\2./\3\2\2\2/\61\3\2\2\2\60.\3\2\2\2\61"+
+		"\62\7\2\2\3\62\3\3\2\2\2\63\64\7\3\2\2\64\65\5\24\13\2\65\66\79\2\2\66"+
+		"\67\7\4\2\2\678\5\6\4\289\7\5\2\29=\7\6\2\2:<\5\16\b\2;:\3\2\2\2<?\3\2"+
+		"\2\2=;\3\2\2\2=>\3\2\2\2>@\3\2\2\2?=\3\2\2\2@A\7\7\2\2A\5\3\2\2\2BC\5"+
+		"\24\13\2CJ\79\2\2DE\7\b\2\2EF\5\24\13\2FG\79\2\2GI\3\2\2\2HD\3\2\2\2I"+
+		"L\3\2\2\2JH\3\2\2\2JK\3\2\2\2KN\3\2\2\2LJ\3\2\2\2MB\3\2\2\2MN\3\2\2\2"+
+		"N\7\3\2\2\2OP\7\t\2\2PT\79\2\2QS\5\n\6\2RQ\3\2\2\2SV\3\2\2\2TR\3\2\2\2"+
+		"TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\n\2\2X\t\3\2\2\2YZ\5\24\13\2Z[\7\13"+
+		"\2\2[\13\3\2\2\2\\^\7\f\2\2]_\5\16\b\2^]\3\2\2\2_`\3\2\2\2`^\3\2\2\2`"+
+		"a\3\2\2\2ab\3\2\2\2bc\7\r\2\2c\r\3\2\2\2de\7\16\2\2ef\7\4\2\2fg\5\26\f"+
+		"\2gh\7\5\2\2hl\7\17\2\2ik\5\16\b\2ji\3\2\2\2kn\3\2\2\2lj\3\2\2\2lm\3\2"+
+		"\2\2mv\3\2\2\2nl\3\2\2\2os\7\20\2\2pr\5\16\b\2qp\3\2\2\2ru\3\2\2\2sq\3"+
+		"\2\2\2st\3\2\2\2tw\3\2\2\2us\3\2\2\2vo\3\2\2\2vw\3\2\2\2wx\3\2\2\2xy\7"+
+		"\21\2\2y\u00e9\3\2\2\2z{\7\22\2\2{|\7\4\2\2|}\5\26\f\2}~\7\5\2\2~\u0080"+
+		"\7\23\2\2\177\u0081\5\22\n\2\u0080\177\3\2\2\2\u0081\u0082\3\2\2\2\u0082"+
+		"\u0080\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0084\3\2\2\2\u0084\u0085\7\24"+
+		"\2\2\u0085\u00e9\3\2\2\2\u0086\u0087\7\25\2\2\u0087\u0089\7\4\2\2\u0088"+
+		"\u008a\5\24\13\2\u0089\u0088\3\2\2\2\u0089\u008a\3\2\2\2\u008a\u008b\3"+
+		"\2\2\2\u008b\u008c\5 \21\2\u008c\u008d\7\26\2\2\u008d\u008e\5\26\f\2\u008e"+
+		"\u008f\7\13\2\2\u008f\u0090\5\26\f\2\u0090\u0091\7\13\2\2\u0091\u0092"+
+		"\5\26\f\2\u0092\u0093\7\5\2\2\u0093\u0097\7\6\2\2\u0094\u0096\5\16\b\2"+
+		"\u0095\u0094\3\2\2\2\u0096\u0099\3\2\2\2\u0097\u0095\3\2\2\2\u0097\u0098"+
+		"\3\2\2\2\u0098\u009a\3\2\2\2\u0099\u0097\3\2\2\2\u009a\u009b\7\27\2\2"+
+		"\u009b\u00e9\3\2\2\2\u009c\u00a0\7\6\2\2\u009d\u009f\5\16\b\2\u009e\u009d"+
+		"\3\2\2\2\u009f\u00a2\3\2\2\2\u00a0\u009e\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1"+
+		"\u00a3\3\2\2\2\u00a2\u00a0\3\2\2\2\u00a3\u00a4\7\30\2\2\u00a4\u00a5\7"+
+		"\4\2\2\u00a5\u00a6\5\26\f\2\u00a6\u00a7\7\5\2\2\u00a7\u00a8\7\13\2\2\u00a8"+
+		"\u00e9\3\2\2\2\u00a9\u00aa\7\30\2\2\u00aa\u00ab\7\4\2\2\u00ab\u00ac\5"+
+		"\26\f\2\u00ac\u00ad\7\5\2\2\u00ad\u00b1\7\6\2\2\u00ae\u00b0\5\16\b\2\u00af"+
+		"\u00ae\3\2\2\2\u00b0\u00b3\3\2\2\2\u00b1\u00af\3\2\2\2\u00b1\u00b2\3\2"+
+		"\2\2\u00b2\u00b4\3\2\2\2\u00b3\u00b1\3\2\2\2\u00b4\u00b5\7\31\2\2\u00b5"+
+		"\u00e9\3\2\2\2\u00b6\u00b7\7\32\2\2\u00b7\u00b8\7\4\2\2\u00b8\u00b9\5"+
+		" \21\2\u00b9\u00ba\7\5\2\2\u00ba\u00bb\7\13\2\2\u00bb\u00e9\3\2\2\2\u00bc"+
+		"\u00e9\5\20\t\2\u00bd\u00be\7\33\2\2\u00be\u00bf\5\26\f\2\u00bf\u00c0"+
+		"\7\13\2\2\u00c0\u00e9\3\2\2\2\u00c1\u00c2\5\24\13\2\u00c2\u00c5\5 \21"+
+		"\2\u00c3\u00c4\7\26\2\2\u00c4\u00c6\5\26\f\2\u00c5\u00c3\3\2\2\2\u00c5"+
+		"\u00c6\3\2\2\2\u00c6\u00cf\3\2\2\2\u00c7\u00c8\7\b\2\2\u00c8\u00cb\5 "+
+		"\21\2\u00c9\u00ca\7\26\2\2\u00ca\u00cc\5\26\f\2\u00cb\u00c9\3\2\2\2\u00cb"+
+		"\u00cc\3\2\2\2\u00cc\u00ce\3\2\2\2\u00cd\u00c7\3\2\2\2\u00ce\u00d1\3\2"+
+		"\2\2\u00cf\u00cd\3\2\2\2\u00cf\u00d0\3\2\2\2\u00d0\u00d2\3\2\2\2\u00d1"+
+		"\u00cf\3\2\2\2\u00d2\u00d3\7\13\2\2\u00d3\u00e9\3\2\2\2\u00d4\u00d7\5"+
+		" \21\2\u00d5\u00d6\7\26\2\2\u00d6\u00d8\5\26\f\2\u00d7\u00d5\3\2\2\2\u00d7"+
+		"\u00d8\3\2\2\2\u00d8\u00e1\3\2\2\2\u00d9\u00da\7\b\2\2\u00da\u00dd\5 "+
+		"\21\2\u00db\u00dc\7\26\2\2\u00dc\u00de\5\26\f\2\u00dd\u00db\3\2\2\2\u00dd"+
+		"\u00de\3\2\2\2\u00de\u00e0\3\2\2\2\u00df\u00d9\3\2\2\2\u00e0\u00e3\3\2"+
+		"\2\2\u00e1\u00df\3\2\2\2\u00e1\u00e2\3\2\2\2\u00e2\u00e4\3\2\2\2\u00e3"+
+		"\u00e1\3\2\2\2\u00e4\u00e5\7\13\2\2\u00e5\u00e9\3\2\2\2\u00e6\u00e7\7"+
+		"\34\2\2\u00e7\u00e9\7\13\2\2\u00e8d\3\2\2\2\u00e8z\3\2\2\2\u00e8\u0086"+
+		"\3\2\2\2\u00e8\u009c\3\2\2\2\u00e8\u00a9\3\2\2\2\u00e8\u00b6\3\2\2\2\u00e8"+
+		"\u00bc\3\2\2\2\u00e8\u00bd\3\2\2\2\u00e8\u00c1\3\2\2\2\u00e8\u00d4\3\2"+
+		"\2\2\u00e8\u00e6\3\2\2\2\u00e9\17\3\2\2\2\u00ea\u00eb\7\35\2\2\u00eb\u00ec"+
+		"\7\4\2\2\u00ec\u00f1\5\26\f\2\u00ed\u00ee\7\b\2\2\u00ee\u00f0\5\26\f\2"+
+		"\u00ef\u00ed\3\2\2\2\u00f0\u00f3\3\2\2\2\u00f1\u00ef\3\2\2\2\u00f1\u00f2"+
+		"\3\2\2\2\u00f2\u00f4\3\2\2\2\u00f3\u00f1\3\2\2\2\u00f4\u00f5\7\5\2\2\u00f5"+
+		"\u00f6\7\13\2\2\u00f6\21\3\2\2\2\u00f7\u00f8\7\36\2\2\u00f8\u00f9\5\26"+
+		"\f\2\u00f9\u00fd\7\37\2\2\u00fa\u00fc\5\16\b\2\u00fb\u00fa\3\2\2\2\u00fc"+
+		"\u00ff\3\2\2\2\u00fd\u00fb\3\2\2\2\u00fd\u00fe\3\2\2\2\u00fe\u0109\3\2"+
+		"\2\2\u00ff\u00fd\3\2\2\2\u0100\u0101\7 \2\2\u0101\u0105\7\37\2\2\u0102"+
+		"\u0104\5\16\b\2\u0103\u0102\3\2\2\2\u0104\u0107\3\2\2\2\u0105\u0103\3"+
+		"\2\2\2\u0105\u0106\3\2\2\2\u0106\u0109\3\2\2\2\u0107\u0105\3\2\2\2\u0108"+
+		"\u00f7\3\2\2\2\u0108\u0100\3\2\2\2\u0109\23\3\2\2\2\u010a\u0111\5 \21"+
+		"\2\u010b\u0111\7!\2\2\u010c\u0111\7\"\2\2\u010d\u0111\7#\2\2\u010e\u0111"+
+		"\7$\2\2\u010f\u0111\7%\2\2\u0110\u010a\3\2\2\2\u0110\u010b\3\2\2\2\u0110"+
+		"\u010c\3\2\2\2\u0110\u010d\3\2\2\2\u0110\u010e\3\2\2\2\u0110\u010f\3\2"+
+		"\2\2\u0111\25\3\2\2\2\u0112\u0113\b\f\1\2\u0113\u0122\7:\2\2\u0114\u0122"+
+		"\7;\2\2\u0115\u0122\78\2\2\u0116\u0122\7=\2\2\u0117\u0122\7<\2\2\u0118"+
+		"\u0122\5 \21\2\u0119\u0122\5\30\r\2\u011a\u011b\7\4\2\2\u011b\u011c\5"+
+		"\26\f\2\u011c\u011d\7\5\2\2\u011d\u0122\3\2\2\2\u011e\u011f\5\34\17\2"+
+		"\u011f\u0120\5\26\f\3\u0120\u0122\3\2\2\2\u0121\u0112\3\2\2\2\u0121\u0114"+
+		"\3\2\2\2\u0121\u0115\3\2\2\2\u0121\u0116\3\2\2\2\u0121\u0117\3\2\2\2\u0121"+
+		"\u0118\3\2\2\2\u0121\u0119\3\2\2\2\u0121\u011a\3\2\2\2\u0121\u011e\3\2"+
+		"\2\2\u0122\u0129\3\2\2\2\u0123\u0124\f\4\2\2\u0124\u0125\5\32\16\2\u0125"+
+		"\u0126\5\26\f\5\u0126\u0128\3\2\2\2\u0127\u0123\3\2\2\2\u0128\u012b\3"+
+		"\2\2\2\u0129\u0127\3\2\2\2\u0129\u012a\3\2\2\2\u012a\27\3\2\2\2\u012b"+
+		"\u0129\3\2\2\2\u012c\u012d\5 \21\2\u012d\u0136\7\4\2\2\u012e\u0133\5\26"+
+		"\f\2\u012f\u0130\7\b\2\2\u0130\u0132\5\26\f\2\u0131\u012f\3\2\2\2\u0132"+
+		"\u0135\3\2\2\2\u0133\u0131\3\2\2\2\u0133\u0134\3\2\2\2\u0134\u0137\3\2"+
+		"\2\2\u0135\u0133\3\2\2\2\u0136\u012e\3\2\2\2\u0136\u0137\3\2\2\2\u0137"+
+		"\u0138\3\2\2\2\u0138\u0139\7\5\2\2\u0139\31\3\2\2\2\u013a\u013b\t\2\2"+
+		"\2\u013b\33\3\2\2\2\u013c\u013d\t\3\2\2\u013d\35\3\2\2\2\u013e\u013f\7"+
+		"\64\2\2\u013f\u0144\79\2\2\u0140\u0141\7\64\2\2\u0141\u0143\5\36\20\2"+
+		"\u0142\u0140\3\2\2\2\u0143\u0146\3\2\2\2\u0144\u0142\3\2\2\2\u0144\u0145"+
+		"\3\2\2\2\u0145\37\3\2\2\2\u0146\u0144\3\2\2\2\u0147\u014c\79\2\2\u0148"+
+		"\u0149\7\64\2\2\u0149\u014b\79\2\2\u014a\u0148\3\2\2\2\u014b\u014e\3\2"+
+		"\2\2\u014c\u014a\3\2\2\2\u014c\u014d\3\2\2\2\u014d!\3\2\2\2\u014e\u014c"+
+		"\3\2\2\2%$&,.=JMT`lsv\u0082\u0089\u0097\u00a0\u00b1\u00c5\u00cb\u00cf"+
+		"\u00d7\u00dd\u00e1\u00e8\u00f1\u00fd\u0105\u0108\u0110\u0121\u0129\u0133"+
+		"\u0136\u0144\u014c";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

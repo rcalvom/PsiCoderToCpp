@@ -37,6 +37,26 @@ public interface PsiCoderListener extends ParseTreeListener {
 	 */
 	void exitParam_funcion(PsiCoderParser.Param_funcionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PsiCoderParser#estructura}.
+	 * @param ctx the parse tree
+	 */
+	void enterEstructura(PsiCoderParser.EstructuraContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PsiCoderParser#estructura}.
+	 * @param ctx the parse tree
+	 */
+	void exitEstructura(PsiCoderParser.EstructuraContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PsiCoderParser#sentencia_estructura}.
+	 * @param ctx the parse tree
+	 */
+	void enterSentencia_estructura(PsiCoderParser.Sentencia_estructuraContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PsiCoderParser#sentencia_estructura}.
+	 * @param ctx the parse tree
+	 */
+	void exitSentencia_estructura(PsiCoderParser.Sentencia_estructuraContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PsiCoderParser#principal}.
 	 * @param ctx the parse tree
 	 */

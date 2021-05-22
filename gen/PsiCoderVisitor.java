@@ -28,6 +28,18 @@ public interface PsiCoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParam_funcion(PsiCoderParser.Param_funcionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#estructura}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEstructura(PsiCoderParser.EstructuraContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#sentencia_estructura}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSentencia_estructura(PsiCoderParser.Sentencia_estructuraContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#principal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

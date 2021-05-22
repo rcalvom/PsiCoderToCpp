@@ -1,22 +1,28 @@
+funcion entero sumar (entero a, entero b) hacer
+    //retorno a + b;
+    imprimir("a plus b");
+fin_funcion
+
+funcion entero restar (entero a, entero b) hacer
+    //retorno a - b;
+    imprimir("a minus b");
+fin_funcion
+
 funcion_principal
-    imprimir(1);
-    imprimir(1.0);
-    imprimir(1, 1.0);
-    imprimir(verdadero);
-    imprimir(falso);
-    imprimir(verdadero, falso);
-    imprimir("Hola Mundo");
-    imprimir('A');
-    imprimir("Hola Mundo", 'A');
-    imprimir(a);
-    imprimir(a, b);
-    imprimir((verdadero));
-    imprimir((falso), (verdadero), (a+b), (1%2));
-    imprimir(1+2-3*4/5%6);
-    imprimir(verdadero&&falso);
-    imprimir(verdadero||falso);
-    imprimir(verdadero!=falso);
-    imprimir(!flag);
-    imprimir(-1);
-    imprimir(2 > 3);
+    imprimir("Hello world");
 fin_principal
+
+funcion entero sumar (entero a, entero b) hacer
+    //retorno a + b;
+    imprimir("a plus b");
+fin_funcion
+
+funcion entero restar (entero a, entero b) hacer
+    //retorno a - b;
+    imprimir("a minus b");
+fin_funcion
+
+funcion entero multiplicar (entero a, entero b) hacer
+    //retorno a * b;
+    imprimir("a times b");
+fin_funcion
