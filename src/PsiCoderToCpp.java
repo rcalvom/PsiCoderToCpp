@@ -141,15 +141,39 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
             visitLeer(ctx.leer());
         }else if(ctx.retorno()!= null){
             visitRetorno(ctx.retorno());
+            System.out.println("HOLAAA");
         }else if(ctx.tipo()!= null){
             visitTipo(ctx.tipo());
             this.write(" ");
-            for (int i = 0; i < ctx.id().size(); i++) {
-                visitId(ctx.id(i));
-                this.write(", ");
+            visitId(ctx.id(0));
+            int id = 1, expresion = 0;
+            for (int index = 2; index<ctx.getChildCount(); index++){
+                if(ctx.getChild(index) instanceof PsiCoderParser.IdContext){
+                    this.write(", ");
+                    visitId(ctx.id(id++));
+                }else if(ctx.getChild(index) instanceof PsiCoderParser.ExpresionContext){
+                    this.write(" = ");
+                    visitExpresion(ctx.expresion(expresion++));
+                }
             }
-        }else if(ctx.id()!= null){
-            this.write(ctx.getText());
+            this.write(";");
+
+        }else if(ctx.id()!= null && ctx.id().size()!=0){
+            visitId(ctx.id(0));
+            int id = 1, expresion = 0;
+            for (int index = 2; index<ctx.getChildCount(); index++){
+                if(ctx.getChild(index) instanceof PsiCoderParser.IdContext){
+                    this.write(", ");
+                    visitId(ctx.id(id++));
+                }else if(ctx.getChild(index) instanceof PsiCoderParser.ExpresionContext){
+                    this.write(" = ");
+                    visitExpresion(ctx.expresion(expresion++));
+                }
+            }
+            this.write(";");
+        }else if(ctx.llamado_funcion()!= null){
+            visitLlamado_funcion(ctx.llamado_funcion());
+            this.write(";");
         }
         return null;
     }
@@ -305,6 +329,8 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         this.write("; ");
         visitExpresion(ctx.expresion(1));
         this.write("; ");
+        visitId(ctx.id());
+        this.write(" += ");
         visitExpresion(ctx.expresion(2));
         this.write(") {");
         this.write("\n");
@@ -379,7 +405,21 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         this.write(";");
         return null;
     }
-
+    @Override public T visitLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx) {
+        visitId(ctx.id());
+        this.write("(");
+        if(ctx.expresion().size() == 0){
+            this.write(")");
+        }else if(ctx.expresion().size() == 1){
+            visitExpresion(ctx.expresion(0));
+            for(int i = 1; i < ctx.expresion().size(); i++){
+                this.write(", ");
+                visitExpresion(ctx.expresion(i));
+            }
+            this.write(")");
+        }
+        return null;
+    }
 
     private void write(String s){
         try{

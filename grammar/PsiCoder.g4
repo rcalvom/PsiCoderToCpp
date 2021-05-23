@@ -24,14 +24,14 @@ sentencia
     | tipo id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
     | id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
     | romper ';'
-    // idcall ';' LLamado a función.
+    | llamado_funcion ';'
     ;
 
 si : 'si' '(' expresion ')' 'entonces' (sentencia)* si_no 'fin_si' ;
 
 leer: 'leer' '(' id ')' ';' ;
 
-retorno: 'retorno' expresion ';' ;
+retorno: 'retornar' expresion ';' ;
 
 si_no: ('si_no' (sentencia)*)? ;
 
