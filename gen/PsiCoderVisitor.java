@@ -1,4 +1,4 @@
-// Generated from /home/ricardo/Documents/Proyectos/PsiCoderTranslater/grammar/PsiCoder.g4 by ANTLR 4.9.1
+// Generated from C:/Users/Usuario/Documents/Len/Traductor/PsiCoderToCpp/grammar\PsiCoder.g4 by ANTLR 4.9.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -52,11 +52,65 @@ public interface PsiCoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSentencia(PsiCoderParser.SentenciaContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#si}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSi(PsiCoderParser.SiContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#leer}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeer(PsiCoderParser.LeerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#retorno}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRetorno(PsiCoderParser.RetornoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#si_no}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSi_no(PsiCoderParser.Si_noContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#seleccionar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSeleccionar(PsiCoderParser.SeleccionarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#para}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPara(PsiCoderParser.ParaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#hacer}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHacer(PsiCoderParser.HacerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#mientras}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMientras(PsiCoderParser.MientrasContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#imprimir}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitImprimir(PsiCoderParser.ImprimirContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PsiCoderParser#romper}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRomper(PsiCoderParser.RomperContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#caso}.
 	 * @param ctx the parse tree
@@ -93,12 +147,6 @@ public interface PsiCoderVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOperador_unitario(PsiCoderParser.Operador_unitarioContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PsiCoderParser#idestructura}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdestructura(PsiCoderParser.IdestructuraContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PsiCoderParser#id}.
 	 * @param ctx the parse tree

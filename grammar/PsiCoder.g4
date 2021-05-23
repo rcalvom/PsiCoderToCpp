@@ -13,21 +13,39 @@ sentencia_estructura : tipo ID (',' ID)* ';' ;
 principal : 'funcion_principal' (sentencia)+ 'fin_principal' ;
 
 sentencia
-    : 'si' '(' expresion ')' 'entonces' (sentencia)* ('si_no' (sentencia)*)? 'fin_si'
-    | 'seleccionar' '(' expresion ')' 'entre' (caso)+ 'fin_seleccionar'
-    | 'para' '(' tipo? id '=' expresion ';' expresion ';' expresion')' 'hacer' (sentencia)* 'fin_para'
-    | 'hacer' (sentencia)* 'mientras' '(' expresion ')' ';'
-    | 'mientras' '(' expresion ')' 'hacer' (sentencia)* 'fin_mientras'
-    | 'leer' '(' id ')' ';'
+    : si
+    | seleccionar
+    | para
+    | hacer
+    | mientras
+    | leer
     | imprimir
-    | 'retorno' expresion ';'
+    | retorno
     | tipo id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
     | id ('=' expresion)? (',' id ('=' expresion)?)*  ';'
-    | 'romper' ';'
+    | romper ';'
     // idcall ';' LLamado a función.
     ;
 
+si : 'si' '(' expresion ')' 'entonces' (sentencia)* si_no 'fin_si' ;
+
+leer: 'leer' '(' id ')' ';' ;
+
+retorno: 'retorno' expresion ';' ;
+
+si_no: ('si_no' (sentencia)*)? ;
+
+seleccionar: 'seleccionar' '(' expresion ')' 'entre' (caso)+ 'fin_seleccionar' ;
+
+para: 'para' '(' tipo? id '=' expresion ';' expresion ';' expresion')' 'hacer' (sentencia)* 'fin_para' ;
+
+hacer: 'hacer' (sentencia)* 'mientras' '(' expresion ')' ';' ;
+
+mientras: 'mientras' '(' expresion ')' 'hacer' (sentencia)* 'fin_mientras' ;
+
 imprimir : 'imprimir' '(' expresion (',' expresion)* ')' ';' ;
+
+romper : 'romper' ;
 
 caso
     : 'caso' expresion ':' (sentencia)*

@@ -14,8 +14,21 @@ funcion entero restar (entero a, entero b) hacer
 fin_funcion
 
 funcion_principal
-    imprimir("Hello world");
-fin_principal
+   entero n;
+   booleano flag = falso;
+   leer( n );
+   para (entero i = 2 ; i < n ; 1 ) hacer
+   si ( n % i == 0 ) entonces
+    	imprimir( "no es primo");
+         flag = verdadero;
+        	   fin_si
+   fin_para
+    si ( flag == falso ) entonces
+   	imprimir("es primo");
+   si_no
+   fin_si
+ fin_principal
+
 
 funcion entero sumar (entero a, entero b) hacer
     imprimir("a plus b");
@@ -23,8 +36,23 @@ fin_funcion
 
 funcion entero restar (entero a, entero b) hacer
     imprimir("a minus b");
+    imprimir("Hola como vas");
 fin_funcion
 
 funcion entero multiplicar (entero a, entero b) hacer
-    imprimir("a times b");
+    para (entero j = 0 ; i < a || j  < 100  ; p ) hacer
+            imprimir(j);
+            imprimir("mamon");
+    fin_para
+
+    hacer
+        a = a - 1;
+        imprimir("mamonx123142");
+    mientras( a > 0 );
+    mientras ( a > 0 ) hacer
+       leer(a);
+       imprimir("mamonx123142");
+    fin_mientras
+    entero a = 0, b = true;
+    retorno true;
 fin_funcion
