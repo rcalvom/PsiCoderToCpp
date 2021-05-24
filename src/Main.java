@@ -25,8 +25,11 @@ public class Main {
             writer.flush();
             writer.close();
 
-        }catch (IOException ioException){
+        }catch(IOException ioException){
             System.out.println("No se ha encontrado el archivo de entrada en la ruta: " + input + ", por favor revise que el archivo exista.");
+            System.exit(-1);
+        }catch(Exception e){
+            System.err.println("Ha ocurrido un error " + e.getMessage());
             System.exit(-1);
         }
 

@@ -1,4 +1,4 @@
-// Generated from C:/Users/Usuario/Documents/Len/Traductor/PsiCoderToCpp/grammar\PsiCoder.g4 by ANTLR 4.9.1
+// Generated from /home/ricardo/Documents/Proyectos/PsiCoderTranslater/grammar/PsiCoder.g4 by ANTLR 4.9.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**

@@ -1,87 +1,104 @@
-//Estructura
-//Conceptos Basicos
+/* Archivo de prueba del traductor PsiCoder - C++
+   Diseñado por:
+        Diego Lopez
+        Ricardo Calvo
+*/
 
-estructura Fecha
-    entero dd;
-    entero mm;
-    entero aa;
+estructura Test
+    entero a;
+    booleano b;
+    real c;
+    caracter d;
+    cadena e;
 fin_estructura
 
-estructura Estudiante
-    cadena cedula;
-    cadena nombre;
-    entero edad;
-    real definitiva;
-    Fecha fingreso;
-fin_estructura
+funcion entero SinParametros() hacer
+    imprimir("funcion sin parametros", "\n");
+    retornar 0;
+fin_funcion
+
+funcion entero UnParametro(entero a) hacer
+    imprimir("funcion con un parametro", "\n");
+    retornar a;
+fin_funcion
+
+funcion entero DosParametros(entero a, entero b) hacer
+    imprimir("funcion con dos parametros", "\n");
+    retornar a + b;
+fin_funcion
 
 funcion_principal
-    Estudiante estudiante;
-    entero opcion;
+    // Test imprimir
+    imprimir("Hola Mundo", "\n");
 
+    // Test declaracion
+    booleano flag;
+
+    // Test Leer
+    leer(flag);
+
+    entero a;
+
+    // Test si
+    si (flag) entonces
+        a = 2;
+    si_no
+        a = 1;
+    fin_si
+
+    // Test Seleccionar
+    seleccionar (a) entre
+        caso 1 :
+            imprimir("El valor de a es 1", "\n");
+            romper;
+        caso 2 :
+            imprimir("El valor de a es 2", "\n");
+            romper;
+        defecto :
+             imprimir("El valor de a no es ni 1 ni 2", "\n");
+    fin_seleccionar
+
+    // Test mientras
+    entero i = 5;
+    mientras (i > 0) hacer
+        imprimir("El valor de i es ", i, "\n");
+        i = i - 1;
+    fin_mientras
+
+    // Test hacer mientras
+    entero j = 5;
     hacer
-        opcion = menu();
-        seleccionar ( opcion ) entre
-           caso 1 : estudiante = capturar(estudiante);
-                    romper;
-           caso 2 : mostrar(estudiante);
-                    romper;
-           caso 3 : romper;
-           defecto :imprimir("Digite una opcion entre 1 y 3 ");
-                    romper;
-       fin_seleccionar
-    mientras ( opcion != 3) ;
+        imprimir("El valor de j es ", j, "\n");
+        j = j - 1;
+    mientras (i > 0);
+
+    // Test para
+    para(entero k = 0; k < 10; 1) hacer
+        imprimir("El valor de k es ", k, "\n");
+    fin_para
+
+    //Test llamado función
+    SinParametros();
+
+    //Test Asignación con llamado de función
+    entero par = UnParametro(5);
+    imprimir(par, "\n");
+
+    // Test Asignación de salto de linea a caracter y cadena
+    caracter c1 = '\n';
+    cadena c2 = "\n";
+
 fin_principal
 
-funcion entero menu() hacer
-    entero opcion;
-    imprimir("menu de estructuras ");
-    imprimir("1  Capturar el registro ");
-    imprimir(" 2 Imprimir el registro ");
-    imprimir(" 3  Salir ");
-    imprimir(" digite su opcion entre 1 y 3  ");
-    leer (opcion);
-    retornar opcion;
+estructura Test_Inaccesible
+    entero a;
+    booleano b;
+    real c;
+    caracter d;
+    cadena e;
+fin_estructura
+
+funcion entero Inaccesible(entero a, entero b) hacer
+    imprimir("funcion inaccesible", "\n");
+    retornar a + b;
 fin_funcion
-
-funcion Estudiante capturar(Estudiante estudiante) hacer
-  entero i;
-  real def = 0.0;
-  imprimir("digite la cedula del estudiante  ");
-  leer(estudiante.cedula);
-  imprimir("digite el nombre del estudiante ");
-  leer(estudiante.nombre);
-
-  para(i=0; i<3; 1) hacer
-    imprimir ("digite la nota ",i+1, " del estudiante");
-    leer(estudiante.nota);
-    def = def + estudiante.nota;
-  fin_para
-
-  imprimir("digite la edad del estudiante ");
-  leer(estudiante.edad);
-  estudiante.definitiva = def / 3;
-
-  imprimir("digite el dia de ingreso a la Universidad ");
-  leer(estudiante.fingreso.dd);
-  imprimir("digite el mes de ingreso a la Universidad  ");
-  leer(estudiante.fingreso.mm);
-  imprimir("digite el ako de ingreso a la Universidad  ");
-  leer(estudiante.fingreso.aa);
-  retornar estudiante;
-fin_funcion
-
-funcion entero mostrar(Estudiante estudiante) hacer
-  entero i;
-  imprimir("");
-  imprimir("Cedula  ", estudiante.cedula);
-  imprimir("Nombre  ", estudiante.nombre,"");
-  para (i=0; i<3; 1) hacer
-    imprimir("Nota ",estudiante.nota, " ");
-  fin_para
-  imprimir("Edad  ",estudiante.edad);
-  imprimir("Definitiva  ",estudiante.definitiva);
-  imprimir("Fecha de Ingreso ddmmaaaa  ",estudiante.fingreso.dd,estudiante.fingreso.mm,estudiante.fingreso.aa);
-  retornar i;
-fin_funcion
-

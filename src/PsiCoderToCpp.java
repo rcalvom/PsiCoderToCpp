@@ -45,11 +45,9 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
     public T visitFuncion(PsiCoderParser.FuncionContext ctx) {
         this.write("\t".repeat(this.tabs));
         visitTipo(ctx.tipo());
-        this.write(" " + ctx.ID().getText());
-        this.write("(");
+        this.write(" " + ctx.ID().getText() + "(");
         visitParam_funcion(ctx.param_funcion());
-        this.write(")");
-        this.write(" {\n");
+        this.write(") {\n");
         this.tabs++;
         for(int i = 0; i < ctx.sentencia().size(); i++){
             this.write("\t".repeat(this.tabs));
@@ -79,8 +77,7 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
 
     @Override
     public T visitEstructura(PsiCoderParser.EstructuraContext ctx) {
-        this.write("struct ");
-        this.write(ctx.ID().getText() + " {\n");
+        this.write("struct " + ctx.ID().getText() + " {\n");
         this.tabs++;
         for(int i = 0; i < ctx.sentencia_estructura().size(); i++){
             this.write("\t".repeat(this.tabs));
@@ -125,23 +122,27 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
     public T visitSentencia(PsiCoderParser.SentenciaContext ctx) {
         if(ctx.imprimir()!= null) {
             visitImprimir(ctx.imprimir());
+            this.write(";");
         }else if(ctx.si()!= null){
             visitSi(ctx.si());
         }else if(ctx.seleccionar()!= null){
             visitSeleccionar(ctx.seleccionar());
         }else if(ctx.romper()!= null){
             visitRomper(ctx.romper());
+            this.write(";");
         }else if(ctx.para()!= null){
             visitPara(ctx.para());
         }else if(ctx.hacer()!= null){
             visitHacer(ctx.hacer());
+            this.write(";");
         }else if(ctx.mientras()!= null){
             visitMientras(ctx.mientras());
         }else if(ctx.leer()!= null){
             visitLeer(ctx.leer());
+            this.write(";");
         }else if(ctx.retorno()!= null){
             visitRetorno(ctx.retorno());
-            System.out.println("HOLAAA");
+            this.write(";");
         }else if(ctx.tipo()!= null){
             visitTipo(ctx.tipo());
             this.write(" ");
@@ -157,7 +158,6 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
                 }
             }
             this.write(";");
-
         }else if(ctx.id()!= null && ctx.id().size()!=0){
             visitId(ctx.id(0));
             int id = 1, expresion = 0;
@@ -185,8 +185,6 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
             this.write(" << ");
             visitExpresion(ctx.expresion(i));
         }
-        this.write(";");
-
         return null;
     }
 
@@ -242,11 +240,11 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         return null;
     }
 
-    @Override public T visitSi(PsiCoderParser.SiContext ctx) {
+    @Override
+    public T visitSi(PsiCoderParser.SiContext ctx) {
         this.write("if (");
         visitExpresion(ctx.expresion());
-        this.write("){");
-        this.write("\n");
+        this.write("){\n");
         this.write("\t".repeat(++this.tabs));
         for(int i = 0; i < ctx.sentencia().size(); i++){
             visitSentencia(ctx.sentencia(i));
@@ -255,15 +253,15 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         this.tabs--;
         this.write("\t".repeat(this.tabs));
         this.write("}");
-        if(ctx.si_no()!= null && ctx.getText().contains("si_no")){
+        if(ctx.si_no()!= null){
             visitSi_no(ctx.si_no());
         }
         return null;
     }
 
-    @Override public T visitSi_no(PsiCoderParser.Si_noContext ctx) {
-        this.write(" else {");
-        this.write("\n");
+    @Override
+    public T visitSi_no(PsiCoderParser.Si_noContext ctx) {
+        this.write(" else {\n");
         this.tabs++;
         for(int i = 0; i < ctx.sentencia().size(); i++){
             this.write("\t".repeat(this.tabs));
@@ -276,11 +274,11 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         return null;
     }
 
-    @Override public T visitSeleccionar(PsiCoderParser.SeleccionarContext ctx) {
+    @Override
+    public T visitSeleccionar(PsiCoderParser.SeleccionarContext ctx) {
         this.write("switch (");
         visitExpresion(ctx.expresion());
-        this.write("){");
-        this.write("\n");
+        this.write("){\n");
         this.tabs++;
         for(int i = 0; i < ctx.caso().size(); i++){
             this.write("\t".repeat(this.tabs));
@@ -291,33 +289,28 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         this.write("}");
         return null;
     }
-    @Override public T visitCaso(PsiCoderParser.CasoContext ctx) {
+
+    @Override
+    public T visitCaso(PsiCoderParser.CasoContext ctx) {
         if(ctx.getText().contains("caso")){
             this.write("case ");
             visitExpresion(ctx.expresion());
-            this.write(":");
-            this.write("\n");
-            this.tabs++;
-            for(int i = 0; i < ctx.sentencia().size(); i++){
-                this.write("\t".repeat(this.tabs));
-                visitSentencia(ctx.sentencia(i));
-                this.write("\n");
-            }
-            this.tabs--;
+            this.write(":\n");
         }else{
-            this.write("default : ");
-            this.write("\n");
-            this.tabs++;
-            for(int i = 0; i < ctx.sentencia().size(); i++){
-                this.write("\t".repeat(this.tabs));
-                visitSentencia(ctx.sentencia(i));
-                this.write("\n");
-            }
-            this.tabs--;
+            this.write("default : \n");
         }
+        this.tabs++;
+        for(int i = 0; i < ctx.sentencia().size(); i++){
+            this.write("\t".repeat(this.tabs));
+            visitSentencia(ctx.sentencia(i));
+            this.write("\n");
+        }
+        this.tabs--;
         return null;
     }
-    @Override public T visitPara(PsiCoderParser.ParaContext ctx) {
+
+    @Override
+    public T visitPara(PsiCoderParser.ParaContext ctx) {
         this.write("for (");
         if(ctx.tipo()!= null) {
             visitTipo(ctx.tipo());
@@ -332,8 +325,7 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         visitId(ctx.id());
         this.write(" += ");
         visitExpresion(ctx.expresion(2));
-        this.write(") {");
-        this.write("\n");
+        this.write(") {\n");
         this.tabs++;
         for(int i = 0; i < ctx.sentencia().size(); i++){
             this.write("\t".repeat(this.tabs));
@@ -345,10 +337,9 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         this.write("}");
         return null;
     }
-    @Override public T visitHacer(PsiCoderParser.HacerContext ctx) {
-
-        this.write("do {");
-        this.write("\n");
+    @Override
+    public T visitHacer(PsiCoderParser.HacerContext ctx) {
+        this.write("do {\n");
         this.tabs++;
         for(int i = 0; i < ctx.sentencia().size(); i++){
             this.write("\t".repeat(this.tabs));
@@ -359,21 +350,21 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         this.write("\t".repeat(this.tabs));
         this.write("} while (");
         visitExpresion(ctx.expresion());
-        this.write(");");
-
+        this.write(")");
         return null;
     }
 
-    @Override public T visitRomper(PsiCoderParser.RomperContext ctx) {
-        this.write("break;");
+    @Override
+    public T visitRomper(PsiCoderParser.RomperContext ctx) {
+        this.write("break");
         return null;
     }
 
-    @Override public T visitMientras(PsiCoderParser.MientrasContext ctx) {
+    @Override
+    public T visitMientras(PsiCoderParser.MientrasContext ctx) {
         this.write("while (");
         visitExpresion(ctx.expresion());
-        this.write("){");
-        this.write("\n");
+        this.write("){\n");
         this.tabs++;
         for(int i = 0; i < ctx.sentencia().size(); i++){
             this.write("\t".repeat(this.tabs));
@@ -383,41 +374,40 @@ public class PsiCoderToCpp<T> extends PsiCoderBaseVisitor<T>{
         this.tabs--;
         this.write("\t".repeat(this.tabs));
         this.write("}");
-
         return null;
     }
 
-    @Override public T visitLeer(PsiCoderParser.LeerContext ctx) {
+    @Override
+    public T visitLeer(PsiCoderParser.LeerContext ctx) {
         this.write("cin >> ");
         visitId(ctx.id());
-        this.write(";");
         return null;
     }
 
-    @Override public T visitId(PsiCoderParser.IdContext ctx) {
+    @Override
+    public T visitId(PsiCoderParser.IdContext ctx) {
         this.write(ctx.getText());
         return null;
     }
 
-    @Override public T visitRetorno(PsiCoderParser.RetornoContext ctx) {
+    @Override
+    public T visitRetorno(PsiCoderParser.RetornoContext ctx) {
         this.write("return ");
         visitExpresion(ctx.expresion());
-        this.write(";");
         return null;
     }
-    @Override public T visitLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx) {
+    @Override
+    public T visitLlamado_funcion(PsiCoderParser.Llamado_funcionContext ctx) {
         visitId(ctx.id());
         this.write("(");
-        if(ctx.expresion().size() == 0){
-            this.write(")");
-        }else if(ctx.expresion().size() == 1){
+        if(ctx.expresion() == null || ctx.expresion().size() > 0){
             visitExpresion(ctx.expresion(0));
             for(int i = 1; i < ctx.expresion().size(); i++){
                 this.write(", ");
                 visitExpresion(ctx.expresion(i));
             }
-            this.write(")");
         }
+        this.write(")");
         return null;
     }
 

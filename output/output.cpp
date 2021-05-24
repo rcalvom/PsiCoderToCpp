@@ -3,88 +3,80 @@
 
 using namespace std;
 
-struct Fecha {
-	int dd;
-	int mm;
-	int aa;
+struct Test {
+	int a;
+	bool b;
+	double c;
+	char d;
+	string e;
 };
 
-struct Estudiante {
-	string cedula;
-	string nombre;
-	int edad;
-	double definitiva;
-	Fecha fingreso;
-};
-
-int main(){
-	Estudiante estudiante;
-	int opcion;
-	do {
-		opcion = menu();
-		switch (opcion){
-			case 1:
-				estudiante = capturar(estudiante);
-				break;
-			case 2:
-				mostrar(estudiante);
-				break;
-			case 3:
-				break;
-			default : 
-				cout << "Digite una opcion entre 1 y 3 ";
-				break;
-		}
-	} while (opcion != 3);
+int SinParametros() {
+	cout << "funcion sin parametros" << "\n";
 	return 0;
 }
 
-int menu() {
-	int opcion;
-	cout << "menu de estructuras ";
-	cout << "1  Capturar el registro ";
-	cout << " 2 Imprimir el registro ";
-	cout << " 3  Salir ";
-	cout << " digite su opcion entre 1 y 3  ";
-	cin >> opcion;
-	return opcion;
+int UnParametro(int a) {
+	cout << "funcion con un parametro" << "\n";
+	return a;
 }
 
-Estudiante capturar(Estudiante estudiante) {
-	int i;
-	double def = 0.0;
-	cout << "digite la cedula del estudiante  ";
-	cin >> estudiante.cedula;
-	cout << "digite el nombre del estudiante ";
-	cin >> estudiante.nombre;
-	for ( i = 0; i < 3; i += 1) {
-		cout << "digite la nota " << i + 1 << " del estudiante";
-		cin >> estudiante.nota;
-		def = def + estudiante.nota;
-	}
-	cout << "digite la edad del estudiante ";
-	cin >> estudiante.edad;
-	estudiante.definitiva = def / 3;
-	cout << "digite el dia de ingreso a la Universidad ";
-	cin >> estudiante.fingreso.dd;
-	cout << "digite el mes de ingreso a la Universidad  ";
-	cin >> estudiante.fingreso.mm;
-	cout << "digite el ako de ingreso a la Universidad  ";
-	cin >> estudiante.fingreso.aa;
-	return estudiante;
+int DosParametros(int a, int b) {
+	cout << "funcion con dos parametros" << "\n";
+	return a + b;
 }
 
-int mostrar(Estudiante estudiante) {
-	int i;
-	cout << "";
-	cout << "Cedula  " << estudiante.cedula;
-	cout << "Nombre  " << estudiante.nombre << "";
-	for ( i = 0; i < 3; i += 1) {
-		cout << "Nota " << estudiante.nota << " ";
+int main(){
+	cout << "Hola Mundo" << "\n";
+	bool flag;
+	cin >> flag;
+	int a;
+	if (flag){
+		a = 2;
+	} else {
+		a = 1;
 	}
-	cout << "Edad  " << estudiante.edad;
-	cout << "Definitiva  " << estudiante.definitiva;
-	cout << "Fecha de Ingreso ddmmaaaa  " << estudiante.fingreso.dd << estudiante.fingreso.mm << estudiante.fingreso.aa;
-	return i;
+	switch (a){
+		case 1:
+			cout << "El valor de a es 1" << "\n";
+			break;
+		case 2:
+			cout << "El valor de a es 2" << "\n";
+			break;
+		default : 
+			cout << "El valor de a no es ni 1 ni 2" << "\n";
+	}
+	int i = 5;
+	while (i > 0){
+		cout << "El valor de i es " << i << "\n";
+		i = i - 1;
+	}
+	int j = 5;
+	do {
+		cout << "El valor de j es " << j << "\n";
+		j = j - 1;
+	} while (i > 0);
+	for (int k = 0; k < 10; k += 1) {
+		cout << "El valor de k es " << k << "\n";
+	}
+	SinParametros();
+	int par = UnParametro(5);
+	cout << par << "\n";
+	char c1 = '\n';
+	string c2 = "\n";
+	return 0;
+}
+
+struct Test_Inaccesible {
+	int a;
+	bool b;
+	double c;
+	char d;
+	string e;
+};
+
+int Inaccesible(int a, int b) {
+	cout << "funcion inaccesible" << "\n";
+	return a + b;
 }
 
